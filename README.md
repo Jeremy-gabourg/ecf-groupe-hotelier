@@ -1,1 +1,0 @@
-# ecf-groupe-hotelier
