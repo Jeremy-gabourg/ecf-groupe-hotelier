@@ -13,8 +13,8 @@ body {
 }
 
 @font-face {
-    font-family: 'Taviraj';
-    src: url('../fonts/Taviraj/Taviraj-Regular.ttf');
+    font-family: 'Taviraj Italic';
+    src: url('../fonts/Taviraj/Taviraj-MediumItalic.ttf');
 }
 
 * {
@@ -26,9 +26,14 @@ h1 {
 }
 
 h2, h3, h4, h5 {
-    font-family: 'Taviraj';
+    font-family: 'Taviraj Italic';
 }
 
 .logo {
+    height: 60px;
     filter: invert(93%) sepia(70%) saturate(6098%) hue-rotate(185deg) brightness(92%) contrast(90%);
+}
+
+.footer-logo {
+    height : 40px;
 }
