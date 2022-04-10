@@ -26,7 +26,7 @@ class ManageMediaController extends AbstractController
 //    }
 
     #[Route('/manage_media/add', name: 'media_add')]
-    public function addMedia(Request $request, SluggerInterface $slugger)
+    public function add(Request $request, SluggerInterface $slugger, MediaRepository $mediaRepository)
     {
         $media = new Media();
         $form = $this->createForm(AddMediaType::class);
