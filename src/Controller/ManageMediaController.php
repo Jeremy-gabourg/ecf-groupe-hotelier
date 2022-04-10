@@ -6,8 +6,8 @@ use App\Entity\Media;
 use App\Form\AddMediaType;
 use App\Repository\MediaRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\String\Slugger\SluggerInterface;
 
 class ManageMediaController extends AbstractController
@@ -74,6 +74,7 @@ class ManageMediaController extends AbstractController
 
             return $this->redirectToRoute('media_list');
         }
+
         return $this->renderForm('manage_media/add_media.html.twig', [
             'form'=>$form,
         ]);
