@@ -22,6 +22,15 @@ class Media
     #[ORM\ManyToOne(targetEntity: Gallery::class, inversedBy: 'mediaId')]
     private $gallery;
 
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    private $linkedPage;
+
+    #[ORM\Column(type: 'string', length: 255)]
+    private $type;
+
+    #[ORM\Column(type: 'integer')]
+    private $size;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -59,6 +68,42 @@ class Media
     public function setGallery(?Gallery $gallery): self
     {
         $this->gallery = $gallery;
+
+        return $this;
+    }
+
+    public function getLinkedPage(): ?string
+    {
+        return $this->linkedPage;
+    }
+
+    public function setLinkedPage(?string $linkedPage): self
+    {
+        $this->linkedPage = $linkedPage;
+
+        return $this;
+    }
+
+    public function getType(): ?string
+    {
+        return $this->type;
+    }
+
+    public function setType(string $type): self
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    public function getSize(): ?int
+    {
+        return $this->size;
+    }
+
+    public function setSize(int $size): self
+    {
+        $this->size = $size;
 
         return $this;
     }
