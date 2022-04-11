@@ -15,6 +15,7 @@ class SearchDisplayType extends AbstractType
         $builder
             ->add('Date d\'arrivée', DateType::class)
             ->add('Date de départ', DateType::class)
+            ->add('Etablissement', ChoiceType::class)
             ->add('Nombre de voyageurs', ChoiceType::class)
         ;
     }

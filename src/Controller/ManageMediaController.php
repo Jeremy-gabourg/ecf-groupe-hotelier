@@ -3,8 +3,6 @@
 namespace App\Controller;
 
 use App\Form\AddMediaType;
-use App\Repository\MediaRepository;
-use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
@@ -27,7 +25,7 @@ class ManageMediaController extends AbstractController
 //    }
 
     #[Route('/manage_media/add', name: 'media_add')]
-    public function add(Request $request, SluggerInterface $slugger, MediaRepository $mediaRepository, ManagerRegistry $doctrine)
+    public function add(Request $request, SluggerInterface $slugger)
     {
 //        $entityManager = $doctrine->getManager();
 //

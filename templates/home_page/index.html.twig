@@ -7,7 +7,24 @@
     <div class="presentation_video">
         <video src="{{ asset("/ressources/uploads/homepage/production-ID-4775026-625432ad8fde7.mp4") }}" autoplay muted loop alt="Vidéo de présentation"/>
     </div>
+    {{ form_start(form) }}
+    <div>
+        {{ form_errors(form) }}
+    </div>
 
+    <div class="row">
+        <div class="col">
+            {{ form_row(form.file) }}
+        </div>
+        <div class="col">
+            {{ form_row(form.gallery) }}
+        </div>
+        <div class="col">
+            {{ form_row(form.linkedPage) }}
+        </div>
+    </div>
+    <input class="btn btn-outline-primary" type="submit" value="Enregistrer le fichier"/>
+    {{ form_end(form) }}
     <div>
 
     </div>
