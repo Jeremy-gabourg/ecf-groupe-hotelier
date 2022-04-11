@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use Symfony\Bridge\Doctrine\ManagerRegistry;
+use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -16,10 +16,11 @@ class HomePageController extends AbstractController
     {
         $media = $doctrine->getRepository(Media::class)->find(2);
 
+        $mediaEncoded = base64_encode(stream_get_contents($media->getContent()));
 
         return $this->render('home_page/index.html.twig', [
             'controller_name' => 'HomePageController',
-            'media' => $media,
+            'media' => $mediaEncoded,
         ]);
     }
 }
