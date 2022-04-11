@@ -30,7 +30,7 @@ class ManageMediaController extends AbstractController
     #[Route('/manage_media/add', name: 'media_add')]
     public function add(Request $request, SluggerInterface $slugger, MediaRepository $mediaRepository, ManagerRegistry $doctrine)
     {
-        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager = $doctrine->getManager();
 
         $media = new Media();
         $form = $this->createForm(AddMediaType::class);
@@ -42,7 +42,7 @@ class ManageMediaController extends AbstractController
 
             $extension = $file->guessExtension();
             if (!$extension) {
-                $extension = 'bin';
+                $extension = 'mp4';
             }
 
             if ($file) {
@@ -60,6 +60,9 @@ class ManageMediaController extends AbstractController
             // Traitement du nom de fichier
             $media->setMediaName($newFilename);
 
+            // Traitement du type de fichier
+            $media->setType($file->getMimeType());
+
             // Traitement de la taille de fichier
             $fileSize = $file->getSize();
             $media->setSize($fileSize);
@@ -72,7 +75,7 @@ class ManageMediaController extends AbstractController
             $gallery = $form->get('gallery')->getData();
             if($gallery !== null){$media->setGallery($gallery);}
 
-            $entityManager->perist($media);
+            $entityManager->persist($media);
             $entityManager->flush();
 
             return $this->redirectToRoute('home_page');
