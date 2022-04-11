@@ -7,6 +7,8 @@ use App\Entity\Media;
 use App\Repository\GalleryRepository;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Validator\Constraints\File;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -47,9 +49,9 @@ class AddMediaType extends AbstractType
                             'image/png',
                             'image/webp',
                             'video/webm',
-                            'video/mpeg'
+                            'video/mp4'
                         ],
-                        'mimeTypesMessage' => 'Veuillez sélectionner un fichier dans un des formats acceptés : JPEG, PNG, WEBP, WEBM ou MPEG'
+                        'mimeTypesMessage' => 'Veuillez sélectionner un fichier dans un des formats acceptés : JPEG, PNG, WEBP, WEBM ou MP4'
                     ])
                 ]
             ])

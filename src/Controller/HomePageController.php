@@ -10,7 +10,7 @@ use App\Entity\Establishment;
 
 class HomePageController extends AbstractController
 {
-    #[Route('/', name: 'app_home_page')]
+    #[Route('/', name: 'home_page')]
     public function index(): Response
     {
 //        //Entity Manager

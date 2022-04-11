@@ -5,10 +5,12 @@ namespace App\Controller;
 use App\Entity\Media;
 use App\Form\AddMediaType;
 use App\Repository\MediaRepository;
+use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\String\Slugger\SluggerInterface;
+use Symfony\Component\HttpFoundation\Response;
 
 class ManageMediaController extends AbstractController
 {
@@ -26,8 +28,10 @@ class ManageMediaController extends AbstractController
 //    }
 
     #[Route('/manage_media/add', name: 'media_add')]
-    public function add(Request $request, SluggerInterface $slugger, MediaRepository $mediaRepository)
+    public function add(Request $request, SluggerInterface $slugger, MediaRepository $mediaRepository, ManagerRegistry $doctrine)
     {
+        $entityManager = $this->getDoctrine()->getManager();
+
         $media = new Media();
         $form = $this->createForm(AddMediaType::class);
         $form->handleRequest($request);
@@ -62,17 +66,16 @@ class ManageMediaController extends AbstractController
 
             // Traitement de l'éventuelles page liée
             $linkedPage = $form->get('linkedPage')->getData();
-            if($linkedPage){$media->setLinkedPage($linkedPage);}
+            if($linkedPage !== null){$media->setLinkedPage($linkedPage);}
 
             // Traitement de l'éventuelle gallery liée
             $gallery = $form->get('gallery')->getData();
-            if($gallery){$media->setGallery($gallery);}
+            if($gallery !== null){$media->setGallery($gallery);}
 
-            $entityManager = $this->getDoctrine()->getManager();
             $entityManager->perist($media);
             $entityManager->flush();
 
-            return $this->redirectToRoute('media_list');
+            return $this->redirectToRoute('home_page');
         }
 
         return $this->renderForm('manage_media/add_media.html.twig', [
