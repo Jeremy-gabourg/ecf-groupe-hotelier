@@ -2,9 +2,7 @@
 
 namespace App\Form;
 
-use App\Entity\Gallery;
 use App\Entity\Media;
-use App\Repository\GalleryRepository;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
@@ -19,22 +17,24 @@ class AddMediaType extends AbstractType
 
         $builder
             ->add('linkedPage', ChoiceType::class, [
+                'mapped' => false,
                 'choices' => [
                     'Aucune'=>null,
-                    'Page d\'accueil'=>'Accueil Groupe',
-                    'Page de contact'=>'Contact'
+                    'Page d\'accueil'=>'homepage',
+                    'Page de contact'=>'contact_page'
                 ]
             ])
             ->add('gallery', ChoiceType::class, [
+                'mapped' => false,
                 'choices' => [
                     'Aucune' => null,
-                    'Etablissement 1'=>1,
-                    'Etablissement 2'=>2,
-                    'Etablissement 3'=>3,
-                    'Etablissement 4'=>4,
-                    'Etablissement 5'=>5,
-                    'Etablissement 6'=>6,
-                    'Etablissement 7'=>7
+                    'Etablissement 1'=>'gallery_1',
+                    'Etablissement 2'=>'gallery_2',
+                    'Etablissement 3'=>'gallery_3',
+                    'Etablissement 4'=>'gallery_4',
+                    'Etablissement 5'=>'gallery_5',
+                    'Etablissement 6'=>'gallery_6',
+                    'Etablissement 7'=>'gallery_7'
                 ]
             ])
             ->add('file', FileType::class, [

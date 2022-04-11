@@ -2,7 +2,6 @@
 
 namespace App\Controller;
 
-use App\Entity\Media;
 use App\Form\AddMediaType;
 use App\Repository\MediaRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -10,7 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\String\Slugger\SluggerInterface;
-use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
 
 class ManageMediaController extends AbstractController
 {
@@ -42,7 +41,7 @@ class ManageMediaController extends AbstractController
 
             $extension = $file->guessExtension();
             if (!$extension) {
-                $extension = '';
+                $extension = '.mpeg';
             }
 
             if ($file) {
@@ -52,11 +51,23 @@ class ManageMediaController extends AbstractController
             }
 
             try {
-                $file->move(
-                    $this->getParameter('media_directory'),
-                    $newFilename
-                );
-                } catch (FileException $e) {
+                $linkedPage = $form->get('linkedPage')->getData();
+                $gallery = $form->get('gallery')->getData();
+
+                if($linkedPage!==null && $gallery === null){
+                    $file->move(
+                        $this->getParameter('media_directory').'/'.$linkedPage,
+                        $newFilename
+                    );} elseif ($gallery!==null && $linkedPage === null){
+                    $file->move(
+                        $this->getParameter('media_directory').'/'.$gallery,
+                        $newFilename
+                    );} else {
+                    $file->move(
+                        $this->getParameter('media_directory'),
+                        $newFilename
+                    );}}
+            catch (FileException $e) {
                 echo 'Une erreur est survenue :'.$e->getMessage();
             }
 

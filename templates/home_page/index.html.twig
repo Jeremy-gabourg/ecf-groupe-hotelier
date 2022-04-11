@@ -3,22 +3,13 @@
 {% block title %}Bienvenue chez Hypnos!{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
-
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    <div>
-        <img src="data:video/mp4;base64,{{ media }}" alt="Vidéo de présentation"/>
+<div>
+    <div class="presentation_video">
+        <video src="{{ asset("/ressources/uploads/homepage/production-ID-4775026-625432ad8fde7.mp4") }}" autoplay muted loop alt="Vidéo de présentation"/>
     </div>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/xampp/apps/symfony_groupe_hotelier/src/Controller/HomePageController.php'|file_link(0) }}">src/Controller/HomePageController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/xampp/apps/symfony_groupe_hotelier/templates/home_page/index.html.twig'|file_link(0) }}">templates/home_page/index.html.twig</a></code></li>
-    </ul>
+    <div>
+
+    </div>
 </div>
 {% endblock %}
