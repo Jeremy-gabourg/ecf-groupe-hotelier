@@ -45,7 +45,26 @@ class ReservationRepository extends ServiceEntityRepository
         }
     }
 
-    // /**
+     /**
+      * @return Reservation[] Returns an array of Reservation objects
+      */
+
+    public function findIfAvailable(string $arrivalDate, string $departureDate, int $suiteId) : array
+    {
+        return $this->createQueryBuilder('r')
+            ->where('arrivalDate >= r.dateStart')
+            ->andWhere('r.dateStart >= departureDate')
+            ->andWhere('r.suiteId = suiteId')
+            ->setParameters(['arrivalDate' => $arrivalDate, 'departureDate' => $departureDate, 'suiteId' => $suiteId])
+            ->orderBy('r.id', 'ASC')
+            ->setMaxResults(10)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
+
+// /**
     //  * @return Reservation[] Returns an array of Reservation objects
     //  */
     /*
@@ -61,6 +80,7 @@ class ReservationRepository extends ServiceEntityRepository
         ;
     }
     */
+
 
     /*
     public function findOneBySomeField($value): ?Reservation

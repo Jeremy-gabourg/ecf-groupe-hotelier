@@ -16,6 +16,7 @@ class AddMediaType extends AbstractType
 
         $builder
             ->add('linkedPage', ChoiceType::class, [
+                'label'=>'Page liée',
                 'mapped' => false,
                 'choices' => [
                     'Aucune'=>null,
@@ -24,6 +25,7 @@ class AddMediaType extends AbstractType
                 ]
             ])
             ->add('gallery', ChoiceType::class, [
+                'label'=>'Gallerie',
                 'mapped' => false,
                 'choices' => [
                     'Aucune' => null,
