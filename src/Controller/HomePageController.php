@@ -14,7 +14,7 @@ class HomePageController extends AbstractController
     #[Route('/', name: 'home_page')]
     public function index(ManagerRegistry $doctrine): Response
     {
-        $media = $doctrine->getRepository(Media::class)->find(2);
+        $media = $doctrine->getRepository(Media::class)->find(1);
 
         $mediaEncoded = base64_encode(stream_get_contents($media->getContent()));
 

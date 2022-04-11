@@ -42,7 +42,7 @@ class ManageMediaController extends AbstractController
 
             $extension = $file->guessExtension();
             if (!$extension) {
-                $extension = 'mp4';
+                $extension = '';
             }
 
             if ($file) {
@@ -57,26 +57,26 @@ class ManageMediaController extends AbstractController
                 echo 'Une erreur est survenue :'.$e->getMessage();
             }
 
-            // Traitement du nom de fichier
-            $media->setMediaName($newFilename);
-
-            // Traitement du type de fichier
-            $media->setType($file->getMimeType());
-
-            // Traitement de la taille de fichier
-            $fileSize = $file->getSize();
-            $media->setSize($fileSize);
-
-            // Traitement de l'éventuelles page liée
-            $linkedPage = $form->get('linkedPage')->getData();
-            if($linkedPage !== null){$media->setLinkedPage($linkedPage);}
-
-            // Traitement de l'éventuelle gallery liée
-            $gallery = $form->get('gallery')->getData();
-            if($gallery !== null){$media->setGallery($gallery);}
-
-            $entityManager->persist($media);
-            $entityManager->flush();
+//            // Traitement du nom de fichier
+//            $media->setMediaName($newFilename);
+//
+//            // Traitement du type de fichier
+//            $media->setType($file->getMimeType());
+//
+//            // Traitement de la taille de fichier
+//            $fileSize = $file->getSize();
+//            $media->setSize($fileSize);
+//
+//            // Traitement de l'éventuelles page liée
+//            $linkedPage = $form->get('linkedPage')->getData();
+//            if($linkedPage !== null){$media->setLinkedPage($linkedPage);}
+//
+//            // Traitement de l'éventuelle gallery liée
+//            $gallery = $form->get('gallery')->getData();
+//            if($gallery !== null){$media->setGallery($gallery);}
+//
+//            $entityManager->persist($media);
+//            $entityManager->flush();
 
             return $this->redirectToRoute('home_page');
         }
