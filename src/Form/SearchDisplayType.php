@@ -13,8 +13,12 @@ class SearchDisplayType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('arrival_date', DateType::class)
-            ->add('departure_date', DateType::class)
+            ->add('arrival_date', DateType::class,[
+                'widget'=>'single_text',
+            ])
+            ->add('departure_date', DateType::class,[
+                'widget'=>'single_text',
+            ])
             ->add('establishment', ChoiceType::class, [
                 'label'=>'Etablissement',
                 'choices' => [

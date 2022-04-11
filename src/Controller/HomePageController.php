@@ -24,7 +24,7 @@ class HomePageController extends AbstractController
 
             return $this->redirectToRoute('media_add');
         }
-        return $this->render('home_page/index.html.twig', [
+        return $this->renderForm('home_page/index.html.twig', [
             'form' => $form,
         ]);
     }

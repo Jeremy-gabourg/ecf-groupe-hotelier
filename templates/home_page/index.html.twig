@@ -9,7 +9,7 @@
         <video src="{{ asset("/ressources/uploads/homepage/production-ID-4775026-625432ad8fde7.mp4") }}" autoplay muted loop alt="Vidéo de présentation"/>
     </div>
 
-    <div>
+    <div class="d-grid justify-content-lg-between bg-info col-6">
         {{ form_start(form) }}
         <div>
             {{ form_errors(form) }}
@@ -26,7 +26,7 @@
                 {{ form_row(form.establishment) }}
             </div>
         </div>
-        <input class="btn btn-outline-primary" type="submit" value="Rechercher"/>
+        <input class="btn btn-outline-secondary" type="submit" value="Rechercher"/>
         {{ form_end(form) }}
     </div>
 
