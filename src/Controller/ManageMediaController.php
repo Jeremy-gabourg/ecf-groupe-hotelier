@@ -30,9 +30,9 @@ class ManageMediaController extends AbstractController
     #[Route('/manage_media/add', name: 'media_add')]
     public function add(Request $request, SluggerInterface $slugger, MediaRepository $mediaRepository, ManagerRegistry $doctrine)
     {
-        $entityManager = $doctrine->getManager();
-
-        $media = new Media();
+//        $entityManager = $doctrine->getManager();
+//
+//        $media = new Media();
         $form = $this->createForm(AddMediaType::class);
         $form->handleRequest($request);
 
@@ -52,7 +52,10 @@ class ManageMediaController extends AbstractController
             }
 
             try {
-                $media->setContent($file);
+                $file->move(
+                    $this->getParameter('media_directory'),
+                    $newFilename
+                );
                 } catch (FileException $e) {
                 echo 'Une erreur est survenue :'.$e->getMessage();
             }
