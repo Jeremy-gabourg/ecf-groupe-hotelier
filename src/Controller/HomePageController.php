@@ -24,11 +24,11 @@ class HomePageController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $search = $form->getData();
 
-            $arivalDate = $search['arival_date'];
+            $arrivalDate = $search['arrival_date'];
             $departureDate = $search['departure_date'];
             $establishmentId = $search['establishment'];
 
-            $tempSearch->setArivalDate($arivalDate);
+            $tempSearch->setArrivalDate($arrivalDate);
             $tempSearch->setDepartureDate($departureDate);
             $tempSearch->setEstablishmentId($establishmentId);
 

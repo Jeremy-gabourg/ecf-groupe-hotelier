@@ -14,7 +14,7 @@ class TemporarySearch
     private $id;
 
     #[ORM\Column(type: 'date')]
-    private $arivalDate;
+    private $arrivalDate;
 
     #[ORM\Column(type: 'date')]
     private $departureDate;
@@ -31,14 +31,14 @@ class TemporarySearch
         return $this->id;
     }
 
-    public function getArivalDate(): ?\DateTimeInterface
+    public function getArrivalDate(): ?\DateTimeInterface
     {
-        return $this->arivalDate;
+        return $this->arrivalDate;
     }
 
-    public function setArivalDate(\DateTimeInterface $arivalDate): self
+    public function setArrivalDate(\DateTimeInterface $arrivalDate): self
     {
-        $this->arivalDate = $arivalDate;
+        $this->arrivalDate = $arrivalDate;
 
         return $this;
     }
