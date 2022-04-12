@@ -41,11 +41,7 @@ h2, h3, h4, h5 {
 }
 
 .presentation-wrapper{
-    height: 95vh;
-}
-
-.video-dimension{
-    max-width: 100vw;
+    height: 100vh;
 }
 
 .presentation_video{
@@ -77,5 +73,10 @@ h2, h3, h4, h5 {
 
 .footer-container{
     position:sticky;
-    top : 95vh;
+    top : 100vh;
+}
+
+.homepage-image{
+    max-width: 400px;
+    object-fit: contain;
 }

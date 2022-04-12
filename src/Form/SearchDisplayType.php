@@ -24,13 +24,13 @@ class SearchDisplayType extends AbstractType
             ->add('establishment', ChoiceType::class, [
                 'label'=>'Etablissement',
                 'choices' => [
-                    'Etablissement 1'=>'establishment_1',
-                    'Etablissement 2'=>'establishment_2',
-                    'Etablissement 3'=>'establishment_3',
-                    'Etablissement 4'=>'establishment_4',
-                    'Etablissement 5'=>'establishment_5',
-                    'Etablissement 6'=>'establishment_6',
-                    'Etablissement 7'=>'establishment_7'
+                    'Etablissement 1'=>1,
+                    'Etablissement 2'=>2,
+                    'Etablissement 3'=>3,
+                    'Etablissement 4'=>4,
+                    'Etablissement 5'=>5,
+                    'Etablissement 6'=>6,
+                    'Etablissement 7'=>7
                 ]
             ]);
     }

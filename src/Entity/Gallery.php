@@ -25,9 +25,6 @@ class Gallery
     #[ORM\JoinColumn(nullable: false)]
     private $suiteId;
 
-    #[ORM\OneToMany(mappedBy: 'gallery', targetEntity: Media::class)]
-    private $mediaId;
-
     public function __construct()
     {
         $this->mediaId = new ArrayCollection();

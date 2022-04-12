@@ -14,24 +14,39 @@
                    loop
                    alt="Vidéo de présentation"/>
         </div>
-        <div class=" d-grid search-box align-items-end pb-5">
-            <div class="row justify-content-lg-between bg-info col col-lg-6 mx-auto rounded-3 mt-5">
+        <div class="d-grid container search-box align-items-end pb-5">
+            <div class="justify-content-center bg-info col mx-auto rounded-3 mt-5">
                 {{ form_start(form) }}
                 <div>
                     {{ form_errors(form) }}
                 </div>
 
                 <div class="row">
-                    <div class="col p-3">
-                        {{ form_row(form.arrival_date) }}
+                    <div class="col-12 col-md px-4">
+                        <div class="pt-3">
+                            {{ form_label(form.arrival_date) }}
+                        </div>
+                        <div class="pb-3">
+                            {{ form_widget(form.arrival_date) }}
+                        </div>
                     </div>
-                    <div class="col p-3">
-                        {{ form_row(form.departure_date) }}
+                    <div class="col-12 col-md px-4">
+                        <div class="pt-3">
+                            {{ form_label(form.departure_date) }}
+                        </div>
+                        <div class="pb-3">
+                            {{ form_widget(form.departure_date) }}
+                        </div>
                     </div>
-                    <div class="col p-3">
-                        {{ form_row(form.establishment) }}
+                    <div class="col-12 col-md px-4">
+                        <div class="pt-3">
+                            {{ form_label(form.establishment) }}
+                        </div>
+                        <div class="pb-3">
+                            {{ form_widget(form.establishment) }}
+                        </div>
                     </div>
-                    <div class="col m-auto">
+                    <div class="col-12 col-md px-4 py-3 align-self-center">
                         <input class="btn btn-outline-secondary" type="submit" value="Rechercher"/>
                     </div>
                 </div>
@@ -41,17 +56,63 @@
     </div>
 
     <div class="main-content">
-        <div class="card mb-3">
+        <div class="card mb-3 border-0">
             <div class="row g-0">
-                <div class="col-md-4">
-
-                    <img src="{{ asset("ressources/uploads/homepage/gift-habeshaw-V1sB2VwLNLQ-unsplash-6255437c62ca0.jpg") }}" class="img-fluid rounded-start" alt="...">
+                <div class="col">
+                    <div class="card-body justify-content-xl-end">
+                        <h4 class="card-title ps-5 pb-5 mb-5">Où que vous soyez...</h4>
+                        <h3 class="card-text text-end pe-5 my-5">...venez sublimer vos escapades amoureuses...</h3>
+                        <h2 class="card-text text-center pt-5 mt-5">...chez nous!</h2>
+                        <p class="fs-5 pt-5">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque fermentum faucibus felis,
+                            ac tincidunt lectus rhoncus sit amet. Morbi maximus, nisi eu ultricies dapibus, elit metus
+                            bibendum purus, quis dictum neque elit nec dui. Suspendisse nec ultrices justo. Morbi nec
+                            odio ante. Cras lacinia vulputate vehicula. Duis faucibus nunc id mattis ultricies. Cras
+                            facilisis justo id nulla venenatis, id eleifend est auctor. In auctor lectus sit amet nulla
+                            dignissim placerat. Maecenas dolor erat, fermentum a nunc vitae, aliquet interdum ante.
+                            Fusce dictum mollis consequat. Proin neque risus, blandit at eros nec, tincidunt semper
+                            tortor. Suspendisse pharetra pulvinar nunc, id semper turpis hendrerit id. Praesent vitae
+                            urna vitae sapien accumsan eleifend.
+                        </p>
+                    </div>
                 </div>
-                <div class="col-md-8">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                <div class="d-flex col-xl-3 justify-content-center justify-content-xl-end">
+                    <img src="{{ asset("ressources/uploads/homepage/gift-habeshaw-V1sB2VwLNLQ-unsplash-6255437c62ca0.jpg") }}"
+                         class="img-flex rounded-3 homepage-image "
+                         alt="Photo d'un couple qui se tient la main">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <div class="card mb-3 border-0">
+            <div class="row g-0">
+                <div class="d-flex col-xl-3 justify-content-center justify-content-xl-start">
+                    <img src="{{ asset("ressources/uploads/homepage/isi-parente-uWZowqF0uXY-unsplash-6255438e12c88.jpg") }}"
+                         class="img-flex rounded-3 homepage-image "
+                         alt="Photo d'un couple qui se tient la main">
+                </div>
+                <div class="col">
+                    <div class="card-body justify-content-xl-end">
+                        <p class="fs-5 pt-5">
+                            Nam pulvinar urna et felis imperdiet, sodales sodales velit dapibus. Maecenas tempor
+                            pharetra purus, eget elementum diam feugiat ac. Nullam nec rhoncus massa, quis fringilla
+                            ligula. Pellentesque lorem metus, efficitur non est eget, convallis interdum diam. Donec
+                            aliquam dapibus molestie. Donec ac convallis dolor. Integer ut felis nec lorem lacinia
+                            mollis id vel eros. Sed volutpat tincidunt mauris malesuada molestie. In elit lacus, feugiat
+                            a tortor ac, tempor blandit leo. Proin pretium consequat leo. Proin posuere ante eget est
+                            pulvinar tincidunt. Nullam non lectus diam.
+                        </p>
+                        <p class="fs-5 pt-5">
+                            Cras posuere faucibus facilisis. Donec scelerisque mauris quis urna hendrerit bibendum.
+                            Curabitur vel augue mollis, facilisis felis quis, ullamcorper magna. Donec cursus metus sit
+                            amet posuere iaculis. Ut maximus, leo ac volutpat efficitur, diam leo imperdiet lorem, nec
+                            consectetur urna magna ac tortor. Cras bibendum porttitor diam, ut eleifend arcu maximus
+                            vitae. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis
+                            egestas. Suspendisse pulvinar et enim ac placerat. Nunc aliquet consequat aliquam. Quisque
+                            a sem tristique, rhoncus neque non, faucibus urna.
+                        </p>
                     </div>
                 </div>
             </div>

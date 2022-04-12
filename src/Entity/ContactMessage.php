@@ -28,6 +28,9 @@ class ContactMessage
     #[ORM\Column(type: 'text')]
     private $message;
 
+    #[ORM\Column(type: 'boolean')]
+    private $isOpened;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -89,6 +92,18 @@ class ContactMessage
     public function setMessage(string $message): self
     {
         $this->message = $message;
+
+        return $this;
+    }
+
+    public function getIsOpened(): ?bool
+    {
+        return $this->isOpened;
+    }
+
+    public function setIsOpened(bool $isOpened): self
+    {
+        $this->isOpened = $isOpened;
 
         return $this;
     }

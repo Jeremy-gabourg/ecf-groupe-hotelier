@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\TemporarySearch;
 use App\Form\SearchDisplayType;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -15,6 +16,7 @@ class HomePageController extends AbstractController
     public function index(Request $request, ManagerRegistry $doctrine): Response
     {
         $entityManager = $doctrine->getManager();
+        $tempSearch = new TemporarySearch();
 
         $form = $this->createForm(SearchDisplayType::class);
         $form->handleRequest($request);
@@ -22,7 +24,18 @@ class HomePageController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $search = $form->getData();
 
-            return $this->redirectToRoute('media_add');
+            $arivalDate = $search['arival_date'];
+            $departureDate = $search['departure_date'];
+            $establishmentId = $search['establishment'];
+
+            $tempSearch->setArivalDate($arivalDate);
+            $tempSearch->setDepartureDate($departureDate);
+            $tempSearch->setEstablishmentId($establishmentId);
+
+            $entityManager->persist();
+            $entityManager->flush();
+
+            return $this->redirectToRoute('establishment_homepage');
         }
         return $this->renderForm('home_page/index.html.twig', [
             'form' => $form,

@@ -33,9 +33,13 @@ class Establishment
     #[ORM\OneToMany(mappedBy: 'establishmentId', targetEntity: Suite::class, orphanRemoval: true)]
     private $suites;
 
+    #[ORM\OneToMany(mappedBy: 'establishmentId', targetEntity: TemporarySearch::class)]
+    private $temporarySearches;
+
     public function __construct()
     {
         $this->suites = new ArrayCollection();
+        $this->temporarySearches = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -127,6 +131,36 @@ class Establishment
             // set the owning side to null (unless already changed)
             if ($suite->getEstablishmentId() === $this) {
                 $suite->setEstablishmentId(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, TemporarySearch>
+     */
+    public function getTemporarySearches(): Collection
+    {
+        return $this->temporarySearches;
+    }
+
+    public function addTemporarySearch(TemporarySearch $temporarySearch): self
+    {
+        if (!$this->temporarySearches->contains($temporarySearch)) {
+            $this->temporarySearches[] = $temporarySearch;
+            $temporarySearch->setEstablishmentId($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTemporarySearch(TemporarySearch $temporarySearch): self
+    {
+        if ($this->temporarySearches->removeElement($temporarySearch)) {
+            // set the owning side to null (unless already changed)
+            if ($temporarySearch->getEstablishmentId() === $this) {
+                $temporarySearch->setEstablishmentId(null);
             }
         }
 
