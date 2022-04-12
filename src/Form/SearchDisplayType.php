@@ -14,9 +14,11 @@ class SearchDisplayType extends AbstractType
     {
         $builder
             ->add('arrival_date', DateType::class,[
+                'label'=>'Arrivée',
                 'widget'=>'single_text',
             ])
             ->add('departure_date', DateType::class,[
+                'label'=>'Départ',
                 'widget'=>'single_text',
             ])
             ->add('establishment', ChoiceType::class, [

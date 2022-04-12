@@ -31,8 +31,19 @@
                     </button>
                     <div class="navbar-collapse collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav me-auto mb-2 mb-md-0 text-white">
-                            <li class="nav-item">
-                                <a href="#" class="nav-link p-2 text-reset">Nos hôtels</a>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle p-2 text-reset"
+                                   id="navbarDarkDropdownMenuLink"
+                                   role="button"
+                                   data-bs-toggle="dropdown"
+                                   aria-expanded="false">
+                                    Nos hôtels
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
+                                    <li><a class="dropdown-item" href="#">Action</a></li>
+                                    <li><a class="dropdown-item" href="#">Another action</a></li>
+                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                </ul>
                             </li>
                             <li class="nav-item">
                                 <a href="*" class="nav-link p-2 text-reset">Nous découvrir</a>
@@ -51,8 +62,8 @@
         <main>
             {% block body %}{% endblock %}
         </main>
-        <div class="container">
-            <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+        <div class="container footer-container bg-dark">
+            <footer class="d-flex  flex-wrap justify-content-between align-items-center py-3 my-4">
                 <p class="col-md-4 mb-0 text-muted">2022 Hypnos Group</p>
 
                 <a href="/" class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
@@ -60,7 +71,6 @@
                 </a>
 
                 <ul class="nav col-md-4 justify-content-end">
-                    <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Page d'accueil</a></li>
                     <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Conditions d'utilisation</a></li>
                 </ul>
             </footer>
