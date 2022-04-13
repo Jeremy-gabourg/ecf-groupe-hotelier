@@ -21,7 +21,7 @@ class ManageUserController extends AbstractController
         $administrator->setLastName('GABOURG');
         $administrator->setPassword('MotDePasseVisible');
 
-        $entityManager->persist();
+        $entityManager->persist($administrator);
         $entityManager->flush();
 
         return $this->render('manage_user/manage_user.html.twig', [
