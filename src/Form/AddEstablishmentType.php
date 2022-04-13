@@ -49,7 +49,7 @@ class AddEstablishmentType extends AbstractType
                 ]
             ])
             ->add('gallery', FileType::class, [
-                'label'=>'Gallerie de photos/vidéos liées à l\'établissement',
+                'label'=>'Gallerie de photos/vidéos',
                 'multiple'=>true,
                 'mapped'=>false,
                 'required' => false,
@@ -70,12 +70,12 @@ class AddEstablishmentType extends AbstractType
             ->add('manager', EntityType::class, [
                 'label'=>'Manager',
                 'class'=>User::class,
-//                'query_builder'=>function (EntityRepository $er) {
-//                    return $er->createQueryBuilder('u')
-//                        ->where(':role MEMBER OF u.Roles')
-//                        ->setParameter('role', 'ROLE_MANAGER')
-//                        ->orderBy('u.id', 'ASC');
-//                },
+                'query_builder'=>function (EntityRepository $er) {
+                    return $er->createQueryBuilder('u')
+                        ->where(':role MEMBER OF u.Roles')
+                        ->setParameter('role', 'ROLE_MANAGER')
+                        ->orderBy('u.id', 'ASC');
+                },
                 'choice_label'=>'userName',
             ])
         ;
