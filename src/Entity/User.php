@@ -13,7 +13,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
-class User implements UserInterface, PasswordAuthenticatedUserInterface
+class User implements PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
     #[ORM\Column(type: 'uuid', unique: true)]
@@ -30,8 +30,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'string')]
     private $password;
 
-    #[ORM\ManyToMany(targetEntity: Role::class, mappedBy: 'userRoles')]
-    private $Roles;
+    #[ORM\ManyToOne(targetEntity: Role::class, inversedBy: 'users' /*mappedBy: 'userRoles'*/)]
+    #[ORM\JoinColumn(nullable: false)]
+    private $RoleId;
 
     #[ORM\Column(type: 'string', length: 255)]
     private $firstName;
@@ -81,20 +82,20 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return (string) $this->email;
     }
 
-    /**
-     * @return Collection|Roles[]
-     */
-    public function getRoles(): array
+//    /**
+//     * @return Collection|Roles[]
+//     */
+    public function getRoleId(): ?Role
     {
-        return $this->Roles;
+        return $this->RoleId;
     }
 
-//    public function setRoles(array $roles): self
-//    {
-//        $this->roles = $roles;
-//
-//        return $this;
-//    }
+    public function setRoleId(?Role $RoleId): self
+    {
+        $this->RoleId = $RoleId;
+
+        return $this;
+    }
 
     /**
      * @see PasswordAuthenticatedUserInterface
@@ -119,24 +120,24 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->plaintextPassword = null;
     }
 
-    public function addRole(Role $role): self
-    {
-        if (!$this->Roles->contains($role)) {
-            $this->Roles[] = $role;
-            $role->addUserRole($this);
-        }
+//    public function addRole(Role $role): self
+//    {
+//        if (!$this->Roles->contains($role)) {
+//            $this->Roles[] = $role;
+//            $role->addUserRole($this);
+//        }
+//
+//        return $this;
+//    }
 
-        return $this;
-    }
-
-    public function removeRole(Role $role): self
-    {
-        if ($this->Roles->removeElement($role)) {
-            $role->removeUserRole($this);
-        }
-
-        return $this;
-    }
+//    public function removeRole(Role $role): self
+//    {
+//        if ($this->Roles->removeElement($role)) {
+//            $role->removeUserRole($this);
+//        }
+//
+//        return $this;
+//    }
 
     public function getFirstName(): ?string
     {

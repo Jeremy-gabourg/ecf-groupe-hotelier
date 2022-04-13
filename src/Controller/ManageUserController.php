@@ -29,13 +29,13 @@ class ManageUserController extends AbstractController
             $lastName = $data['lastName'];
             $email = $data['email'];
             $plaintextPassword = $data['password'];
-            $role = $data['role'];
+            $roleId = $data['role'];
 
             $user->setFirstName($firstName);
             $user->setLastName($lastName);
             $user->setEmail($email);
             $user->setUserName($firstName, $lastName);
-            $user->addRole($role);
+            $user->setRoleId($roleId);
 
             $hashedPassword = $passwordHasher->hashPassword(
                 $user,

@@ -18,8 +18,8 @@ class Role
     #[ORM\Column(type: 'string', length: 255)]
     private $roleName;
 
-    #[ORM\ManyToMany(targetEntity: User::class, inversedBy: 'Roles')]
-    private $userRoles;
+    #[ORM\OneToMany(mappedBy: 'userId', targetEntity: User::class)]
+    private $users;
 
     public function __construct()
     {
@@ -46,10 +46,11 @@ class Role
     /**
      * @return Collection<int, User>
      */
-    public function getUserRoles(): Collection
+    public function getUsers(): Collection
     {
-        return $this->userRoles;
+        return $this->users;
     }
+
 
     public function addUserRole(User $userRole): self
     {

@@ -30,10 +30,9 @@ class AddUserType extends AbstractType
             ->add('role', EntityType::class, [
                 'label'=>'Rôle',
                 'class'=>Role::class,
-                'choice_label'=>'roleName',
-            ])
-
-        ;
+                'choice_label'=>'RoleName',
+                'multiple'=>true,
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void
