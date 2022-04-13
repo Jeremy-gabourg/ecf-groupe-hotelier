@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Form\AddUserType;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -12,27 +13,41 @@ use Symfony\Component\Routing\Annotation\Route;
 class ManageUserController extends AbstractController
 {
     #[Route('/manage_user/add', name: 'add_user')]
-    public function index(ManagerRegistry $doctrine, UserPasswordHasherInterface $passwordHasher): Response
+    public function index(ManagerRegistry $doctrine, UserPasswordHasherInterface $passwordHasher, Request $request): Response
     {
+        $form = $this->createForm(AddUserType::class);
+        $form->handleRequest($request);
+
         $entityManager = $doctrine->getManager();
-        $administrator = new User();
+        $user = new User();
 
-        $administrator->setEmail('administrator-hypnos-group@gmail.com');
-        $administrator->setFirstName('Jérémy');
-        $administrator->setLastName('GABOURG');
+        if ($form->isSubmitted() && $form->isValid()){
+            $data = $form->getData();
 
-        $plaintextPassword = 'MotDePasseVisible';
-        $hashedPassword = $passwordHasher->hashPassword(
-            $administrator,
-            $plaintextPassword
-        );
-        $administrator->setPassword($hashedPassword);
+            $firstName = $data['first_name'];
+            $lastName = $data['last_name'];
+            $email = $data['email'];
+            $plaintextPassword = $data['password'];
 
-        $entityManager->persist($administrator);
-        $entityManager->flush();
+            $user->setFirstName($firstName);
+            $user->setLastName($lastName);
+            $user->setEmail($email);
 
-        return $this->render('manage_user/manage_user.html.twig', [
-            'controller_name' => 'ManageUserController',
+            $hashedPassword = $passwordHasher->hashPassword(
+                $user,
+                $plaintextPassword
+            );
+            $user->setPassword($hashedPassword);
+
+            $entityManager->persist($user);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('home_page');
+        }
+
+
+        return $this->renderForm('manage_user/manage_user.html.twig', [
+            'form' => $form,
         ]);
     }
 }
