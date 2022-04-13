@@ -12,6 +12,7 @@ use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\File;
+use Symfony\Component\Validator\Constraints\All;
 
 class AddEstablishmentType extends AbstractType
 {
@@ -54,19 +55,21 @@ class AddEstablishmentType extends AbstractType
                 'mapped'=>false,
                 'required' => false,
                 'constraints' => [
-                    new File([
-                        'maxSize' => '40000k',
-                        'mimeTypes' => [
-                            'image/jpeg',
-                            'image/png',
-                            'image/webp',
-                            'video/webm',
-                            'video/mp4'
-                        ],
-                        'mimeTypesMessage' => 'Veuillez sélectionner un fichier dans un des formats acceptés : JPEG, PNG, WEBP, WEBM ou MP4'
+                    new All([
+                        new File([
+                            'maxSize' => '40000k',
+                            'mimeTypes' => [
+                                'image/jpeg',
+                                'image/png',
+                                'image/webp',
+                                'video/webm',
+                                'video/mp4'
+                            ],
+                            'mimeTypesMessage' => 'Veuillez sélectionner un fichier dans un des formats acceptés : JPEG, PNG, WEBP, WEBM ou MP4'
+                        ])
                     ])
-                ]
-            ])
+                ]]
+                    )
             ->add('manager', EntityType::class, [
                 'label'=>'Manager',
                 'class'=>User::class,
@@ -74,7 +77,7 @@ class AddEstablishmentType extends AbstractType
                     return $er->createQueryBuilder('u')
                         ->where(':role MEMBER OF u.Roles')
                         ->setParameter('role', 'ROLE_MANAGER')
-                        ->orderBy('u.id', 'ASC');
+                        ->orderBy('u.userName', 'ASC');
                 },
                 'choice_label'=>'userName',
             ])

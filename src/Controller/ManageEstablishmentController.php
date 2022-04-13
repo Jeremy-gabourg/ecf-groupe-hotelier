@@ -21,9 +21,6 @@ class ManageEstablishmentController extends AbstractController
         $form->handleRequest($request);
 
         $entityManager = $doctrine->getManager();
-
-        $repository = $doctrine->getRepository(User::class);
-
         $establishment = new Establishment();
 
         if ($form->isSubmitted() && $form->isValid()){
@@ -33,9 +30,13 @@ class ManageEstablishmentController extends AbstractController
             $address = $data['address'];
             $city = $data['city'];
             $description = $data['description'];
+
             $managerName = $data['manager'];
-            $user = $repository->findOneBy($managerName);
-            $managerId = $user->getId();
+            $repository = $doctrine->getRepository(User::class);
+            $user = $repository->findOneBy([
+                'userName'=>$managerName,
+            ]);
+           $managerId = $user->getId();
 
             $establishment->setEstablishmentName($name);
             $establishment->setAddress($address);
