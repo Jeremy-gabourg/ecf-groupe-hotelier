@@ -22,13 +22,11 @@ class Gallery
     private $highlightedPhoto;
 
     #[ORM\OneToOne(inversedBy: 'gallery', targetEntity: Suite::class, cascade: ['persist', 'remove'])]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: true)]
     private $suiteId;
 
-    public function __construct()
-    {
-        $this->mediaId = new ArrayCollection();
-    }
+    #[ORM\OneToOne(inversedBy: 'gallery', targetEntity: Establishment::class, cascade: ['persist', 'remove'])]
+    private $establishmentId;
 
     public function getId(): ?int
     {
@@ -71,32 +69,14 @@ class Gallery
         return $this;
     }
 
-    /**
-     * @return Collection<int, Media>
-     */
-    public function getMediaId(): Collection
+    public function getEstablishmentId(): ?Establishment
     {
-        return $this->mediaId;
+        return $this->establishmentId;
     }
 
-    public function addMediaId(Media $mediaId): self
+    public function setEstablishmentId(?Establishment $establishmentId): self
     {
-        if (!$this->mediaId->contains($mediaId)) {
-            $this->mediaId[] = $mediaId;
-            $mediaId->setGallery($this);
-        }
-
-        return $this;
-    }
-
-    public function removeMediaId(Media $mediaId): self
-    {
-        if ($this->mediaId->removeElement($mediaId)) {
-            // set the owning side to null (unless already changed)
-            if ($mediaId->getGallery() === $this) {
-                $mediaId->setGallery(null);
-            }
-        }
+        $this->establishmentId = $establishmentId;
 
         return $this;
     }

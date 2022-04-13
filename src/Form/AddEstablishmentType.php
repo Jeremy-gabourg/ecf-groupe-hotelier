@@ -8,15 +8,17 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\File;
 
 class AddEstablishmentType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('establishment_name', TextType::class, [
+            ->add('establishmentName', TextType::class, [
                 'label'=>'Nom'
             ])
             ->add('address', TextType::class, [
@@ -27,6 +29,39 @@ class AddEstablishmentType extends AbstractType
             ])
             ->add('description', TextareaType::class, [
                 'label'=>'Description'
+            ])
+            ->add('highlightedPhoto', FileType::class, [
+                'label'=>'Photo ou vidéo mise en avant',
+                'constraints' => [
+                    new File([
+                        'maxSize' => '40000k',
+                        'mimeTypes' => [
+                            'image/jpeg',
+                            'image/png',
+                            'image/webp',
+                            'video/webm',
+                            'video/mp4'
+                        ],
+                        'mimeTypesMessage' => 'Veuillez sélectionner un fichier dans un des formats acceptés : JPEG, PNG, WEBP, WEBM ou MP4'
+                    ])
+                ]
+            ])
+            ->add('gallery', FileType::class, [
+                'label'=>'Gallerie de photos liée à l\'établissement',
+                'multiple'=>true,
+                'constraints' => [
+                    new File([
+                        'maxSize' => '40000k',
+                        'mimeTypes' => [
+                            'image/jpeg',
+                            'image/png',
+                            'image/webp',
+                            'video/webm',
+                            'video/mp4'
+                        ],
+                        'mimeTypesMessage' => 'Veuillez sélectionner un fichier dans un des formats acceptés : JPEG, PNG, WEBP, WEBM ou MP4'
+                    ])
+                ]
             ])
             ->add('manager', EntityType::class, [
                 'label'=>'Manager',

@@ -15,10 +15,10 @@ class AddUserType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('first_name', TextType::class,[
+            ->add('firstName', TextType::class,[
                 'label'=>'Prénom'
             ])
-            ->add('last_name', TextType::class,[
+            ->add('lastName', TextType::class,[
                 'label'=>'Nom'
             ])
             ->add('email', EmailType::class, [

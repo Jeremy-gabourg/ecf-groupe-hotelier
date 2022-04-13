@@ -13,11 +13,11 @@ class SearchDisplayType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('arrival_date', DateType::class,[
+            ->add('arrivalDate', DateType::class,[
                 'label'=>'Arrivée',
                 'widget'=>'single_text',
             ])
-            ->add('departure_date', DateType::class,[
+            ->add('departureDate', DateType::class,[
                 'label'=>'Départ',
                 'widget'=>'single_text',
             ])

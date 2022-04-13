@@ -25,8 +25,8 @@ class ManageUserController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()){
             $data = $form->getData();
 
-            $firstName = $data['first_name'];
-            $lastName = $data['last_name'];
+            $firstName = $data['firstName'];
+            $lastName = $data['lastName'];
             $email = $data['email'];
             $plaintextPassword = $data['password'];
             $role = $data['role'];

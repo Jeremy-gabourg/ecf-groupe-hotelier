@@ -24,7 +24,7 @@ class ManageEstablishmentController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()){
             $data = $form->getData();
 
-            $name = $data['establishment_name'];
+            $name = $data['establishmentName'];
             $address = $data['address'];
             $city = $data['city'];
             $description = $data['description'];

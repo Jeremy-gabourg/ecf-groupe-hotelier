@@ -36,6 +36,9 @@ class Establishment
     #[ORM\OneToMany(mappedBy: 'establishmentId', targetEntity: TemporarySearch::class)]
     private $temporarySearches;
 
+    #[ORM\OneToOne(mappedBy: 'establishmentId', targetEntity: Gallery::class, cascade: ['persist', 'remove'])]
+    private $gallery;
+
     public function __construct()
     {
         $this->suites = new ArrayCollection();
@@ -163,6 +166,28 @@ class Establishment
                 $temporarySearch->setEstablishmentId(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getGallery(): ?Gallery
+    {
+        return $this->gallery;
+    }
+
+    public function setGallery(?Gallery $gallery): self
+    {
+        // unset the owning side of the relation if necessary
+        if ($gallery === null && $this->gallery !== null) {
+            $this->gallery->setEstablishmentId(null);
+        }
+
+        // set the owning side of the relation if necessary
+        if ($gallery !== null && $gallery->getEstablishmentId() !== $this) {
+            $gallery->setEstablishmentId($this);
+        }
+
+        $this->gallery = $gallery;
 
         return $this;
     }
