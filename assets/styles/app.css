@@ -80,3 +80,8 @@ h2, h3, h4, h5 {
     max-width: 400px;
     object-fit: contain;
 }
+
+.icon {
+    height: 30px;
+    filter: invert(93%) sepia(70%) saturate(6098%) hue-rotate(185deg) brightness(92%) contrast(90%);
+}
