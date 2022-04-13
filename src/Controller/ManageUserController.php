@@ -55,4 +55,12 @@ class ManageUserController extends AbstractController
             'form' => $form,
         ]);
     }
+
+    #[Route('/manage_user/list', name: 'add_user')]
+    public function show(ManagerRegistry $doctrine, UserPasswordHasherInterface $passwordHasher, Request $request): Response
+    {
+        return $this->render('manage_user/manage_user.html.twig', [
+            'form' => $form,
+        ]);
+    }
 }

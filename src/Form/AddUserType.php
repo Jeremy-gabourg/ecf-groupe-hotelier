@@ -31,7 +31,6 @@ class AddUserType extends AbstractType
                 'label'=>'Rôle',
                 'class'=>Role::class,
                 'choice_label'=>'roleName',
-                'expanded'=>true,
             ])
 
         ;

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+
+<title>Création de compte</title>
+
+{% block body %}
+    <h1>Création de compte</h1>
+
+    {{ form_start(registrationForm) }}
+        {{ form_row(registrationForm.email) }}
+        {{ form_row(registrationForm.plainPassword, {
+            label: 'Password'
+        }) }}
+        {{ form_row(registrationForm.agreeTerms) }}
+
+        <button type="submit" class="btn">Créer mon compte</button>
+    {{ form_end(registrationForm) }}
+{% endblock %}

@@ -31,15 +31,13 @@ class AddEstablishmentType extends AbstractType
             ->add('manager', EntityType::class, [
                 'label'=>'Manager',
                 'class'=>User::class,
-                'query_builder'=>function (EntityRepository $er) {
-                    return $er->createQueryBuilder('u')
-                        ->where('u.Roles = :val')
-                        ->setParameter('val', 'ROLE_MANAGER')
-                        ->orderBy('u.id', 'ASC')
-                        ->getQuery()
-                        ->getResult();
-                }
-
+//                'query_builder'=>function (EntityRepository $er) {
+//                    return $er->createQueryBuilder('u')
+//                        ->where(':role MEMBER OF u.Roles')
+//                        ->setParameter('role', 'ROLE_MANAGER')
+//                        ->orderBy('u.id', 'ASC');
+//                },
+                'choice_label'=>'userName',
             ])
         ;
     }
