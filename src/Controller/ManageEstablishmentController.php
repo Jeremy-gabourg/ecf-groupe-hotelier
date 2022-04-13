@@ -3,8 +3,10 @@
 namespace App\Controller;
 
 use App\Entity\Establishment;
+use App\Entity\User;
 use App\Form\AddEstablishmentType;
 use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -19,6 +21,9 @@ class ManageEstablishmentController extends AbstractController
         $form->handleRequest($request);
 
         $entityManager = $doctrine->getManager();
+
+        $repository = $doctrine->getRepository(User::class);
+
         $establishment = new Establishment();
 
         if ($form->isSubmitted() && $form->isValid()){
@@ -28,7 +33,9 @@ class ManageEstablishmentController extends AbstractController
             $address = $data['address'];
             $city = $data['city'];
             $description = $data['description'];
-            $managerId = $data['manager'];
+            $managerName = $data['manager'];
+            $user = $repository->findOneBy($managerName);
+            $managerId = $user->getId();
 
             $establishment->setEstablishmentName($name);
             $establishment->setAddress($address);

@@ -32,6 +32,8 @@ class AddEstablishmentType extends AbstractType
             ])
             ->add('highlightedPhoto', FileType::class, [
                 'label'=>'Photo ou vidéo mise en avant',
+                'required' => false,
+                'mapped'=>false,
                 'constraints' => [
                     new File([
                         'maxSize' => '40000k',
@@ -47,8 +49,10 @@ class AddEstablishmentType extends AbstractType
                 ]
             ])
             ->add('gallery', FileType::class, [
-                'label'=>'Gallerie de photos liée à l\'établissement',
+                'label'=>'Gallerie de photos/vidéos liées à l\'établissement',
                 'multiple'=>true,
+                'mapped'=>false,
+                'required' => false,
                 'constraints' => [
                     new File([
                         'maxSize' => '40000k',
