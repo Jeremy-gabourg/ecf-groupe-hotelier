@@ -43,6 +43,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'userId', targetEntity: Reservation::class, orphanRemoval: true)]
     private $reservations;
 
+    #[ORM\Column(type: 'string', length: 255)]
+    private $userName;
+
     public function __construct()
     {
         $this->Roles = new ArrayCollection();
@@ -111,8 +114,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     public function eraseCredentials()
     {
-        // If you store any temporary, sensitive data on the user, clear it here
-        // $this->plainPassword = null;
+        $this->plaintextPassword = null;
     }
 
     public function addRole(Role $role): self
@@ -141,7 +143,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function setFirstName(string $firstName): self
     {
-        $this->firstName = $firstName;
+        $this->firstName = ucfirst(strtolower($firstName));
 
         return $this;
     }
@@ -153,7 +155,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function setLastName(string $lastName): self
     {
-        $this->lastName = $lastName;
+        $this->lastName = strtoupper($lastName);
 
         return $this;
     }
@@ -206,6 +208,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
                 $reservation->setUserId(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getUserName(): ?string
+    {
+        return $this->userName;
+    }
+
+    public function setUserName(string $firstName, string $lastName): self
+    {
+        $this->userName = ucfirst(strtolower($firstName)).' '.strtoupper($lastName);
 
         return $this;
     }

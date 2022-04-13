@@ -2,17 +2,48 @@
 
 namespace App\Controller;
 
+use App\Entity\Establishment;
+use App\Form\AddEstablishmentType;
+use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class ManageEstablishmentController extends AbstractController
 {
-    #[Route('/manage/establishment', name: 'app_manage_establishment')]
-    public function index(): Response
+    #[Route('/manage_establishment/add', name: 'app_manage_establishment')]
+    public function index(ManagerRegistry $doctrine, Request $request): Response
     {
-        return $this->render('manage_establishment/index.html.twig', [
-            'controller_name' => 'ManageEstablishmentController',
+        $form = $this->createForm(AddEstablishmentType::class);
+        $form->handleRequest($request);
+
+        $entityManager = $doctrine->getManager();
+        $establishment = new Establishment();
+
+        if ($form->isSubmitted() && $form->isValid()){
+            $data = $form->getData();
+
+            $name = $data['establishment_name'];
+            $address = $data['address'];
+            $city = $data['city'];
+            $description = $data['description'];
+            $managerId = $data['manager'];
+
+            $establishment->setEstablishmentName($name);
+            $establishment->setAddress($address);
+            $establishment->setCity($city);
+            $establishment->setEstablishmentDescription($description);
+            $establishment->setManagerId($managerId);
+
+            $entityManager->persist($establishment);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('home_page');
+        }
+
+        return $this->renderForm('manage_establishment/manage_establishment.html.twig', [
+            'form' => $form,
         ]);
     }
 }

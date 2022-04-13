@@ -9,7 +9,7 @@
 </style>
 
 <div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+    <h1>Hello! ✅</h1>
 
     This friendly message is coming from:
     <ul>
@@ -17,4 +17,31 @@
         <li>Your template at <code><a href="{{ 'C:/xampp/apps/symfony_groupe_hotelier/templates/manage_establishment/index.html.twig'|file_link(0) }}">templates/manage_establishment/index.html.twig</a></code></li>
     </ul>
 </div>
+
+    <div>
+        {{ form_start(form) }}
+        <div>
+            {{ form_errors(form) }}
+        </div>
+
+        <div class="row">
+            <div class="col">
+                {{ form_row(form.establishment_name) }}
+            </div>
+            <div class="col">
+                {{ form_row(form.address) }}
+            </div>
+            <div class="col">
+                {{ form_row(form.city) }}
+            </div>
+            <div class="col">
+                {{ form_row(form.description) }}
+            </div>
+            <div class="col">
+                {{ form_row(form.manager) }}
+            </div>
+        </div>
+        <input class="btn btn-outline-primary" type="submit" value="Enregistrer l'établissement"/>
+        {{ form_end(form) }}
+    </div>
 {% endblock %}

@@ -2,12 +2,13 @@
 
 namespace App\Form;
 
+use App\Entity\Role;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
-use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 
 class AddUserType extends AbstractType
 {
@@ -23,8 +24,14 @@ class AddUserType extends AbstractType
             ->add('email', EmailType::class, [
                 'label'=>'Email'
             ])
-            ->add('password', PasswordType::class, [
+            ->add('password', TextType::class, [
                 'label'=>'Mot de passe temporaire'
+            ])
+            ->add('role', EntityType::class, [
+                'label'=>'Rôle',
+                'class'=>Role::class,
+                'choice_label'=>'roleName',
+                'expanded'=>true,
             ])
 
         ;

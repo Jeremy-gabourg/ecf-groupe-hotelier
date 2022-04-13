@@ -29,16 +29,20 @@ class ManageUserController extends AbstractController
             $lastName = $data['last_name'];
             $email = $data['email'];
             $plaintextPassword = $data['password'];
+            $role = $data['role'];
 
             $user->setFirstName($firstName);
             $user->setLastName($lastName);
             $user->setEmail($email);
+            $user->setUserName($firstName, $lastName);
+            $user->addRole($role);
 
             $hashedPassword = $passwordHasher->hashPassword(
                 $user,
                 $plaintextPassword
             );
             $user->setPassword($hashedPassword);
+            $user->eraseCredentials();
 
             $entityManager->persist($user);
             $entityManager->flush();
