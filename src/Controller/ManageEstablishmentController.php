@@ -3,17 +3,32 @@
 namespace App\Controller;
 
 use App\Entity\Establishment;
-use App\Entity\User;
+use App\Repository\EstablishmentRepository;
 use App\Form\AddEstablishmentType;
 use Doctrine\Persistence\ManagerRegistry;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use function PHPUnit\Framework\throwException;
 
 class ManageEstablishmentController extends AbstractController
 {
+    public function renderHotelMenu(EstablishmentRepository $establishmentRepository): Response {
+        $establishments = $establishmentRepository->findAll();
+
+        if(!$establishments){
+            throw $this->createNotFoundException(
+                'No establishment found'
+            );}
+
+            return $this->render('base_front.html.twig', [
+                    array('establishments'=>$establishments)
+                ]
+            );
+        }
+
+
     #[Route('/manage_establishment/add', name: 'app_manage_establishment')]
     public function index(ManagerRegistry $doctrine, Request $request): Response
     {
@@ -30,13 +45,7 @@ class ManageEstablishmentController extends AbstractController
             $address = $data['address'];
             $city = $data['city'];
             $description = $data['description'];
-
-            $managerName = $data['manager'];
-            $repository = $doctrine->getRepository(User::class);
-            $user = $repository->findOneBy([
-                'userName'=>$managerName,
-            ]);
-           $managerId = $user->getId();
+            $managerId = $data['manager'];
 
             $establishment->setEstablishmentName($name);
             $establishment->setAddress($address);

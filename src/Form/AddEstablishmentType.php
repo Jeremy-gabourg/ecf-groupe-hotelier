@@ -75,11 +75,12 @@ class AddEstablishmentType extends AbstractType
                 'class'=>User::class,
                 'query_builder'=>function (EntityRepository $er) {
                     return $er->createQueryBuilder('u')
-                        ->where(':role MEMBER OF u.Roles')
-                        ->setParameter('role', 'ROLE_MANAGER')
+                        ->where(':roleId = u.RoleId')
+                        ->setParameter('roleId', '1')
                         ->orderBy('u.userName', 'ASC');
                 },
                 'choice_label'=>'userName',
+                'choice_value'=>'id'
             ])
         ;
     }

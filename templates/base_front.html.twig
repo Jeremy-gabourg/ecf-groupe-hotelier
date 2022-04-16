@@ -40,9 +40,9 @@
                                     Nos hôtels
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
-                                    <li><a class="dropdown-item" href="#">Action</a></li>
-                                    <li><a class="dropdown-item" href="#">Another action</a></li>
-                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                    {% for establishments in establishment %}
+                                    <li><a class="dropdown-item" href="#">{{ establishment.establishmentName }}</a></li>
+                                    {% enfor %}
                                 </ul>
                             </li>
                             <li class="nav-item">
