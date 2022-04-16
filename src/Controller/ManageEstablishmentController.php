@@ -10,25 +10,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use function PHPUnit\Framework\throwException;
 
 class ManageEstablishmentController extends AbstractController
 {
-    public function renderHotelMenu(EstablishmentRepository $establishmentRepository): Response {
-        $establishments = $establishmentRepository->findAll();
-
-        if(!$establishments){
-            throw $this->createNotFoundException(
-                'No establishment found'
-            );}
-
-            return $this->render('base_front.html.twig', [
-                    array('establishments'=>$establishments)
-                ]
-            );
-        }
-
-
     #[Route('/manage_establishment/add', name: 'app_manage_establishment')]
     public function index(ManagerRegistry $doctrine, Request $request): Response
     {
