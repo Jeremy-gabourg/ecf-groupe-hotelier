@@ -40,7 +40,7 @@
                                     Nos hôtels
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
-                                    {{ addEstablishmentToMenu }}
+                                    {{ addEstablishmentsToMenu() }}
                                     {% for establishment in establishments %}
                                     <li><a class="dropdown-item" href="#">{{ establishment.establishmentName }}</a></li>
                                     {% endfor %}
