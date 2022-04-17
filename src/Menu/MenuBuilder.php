@@ -2,8 +2,8 @@
 
 namespace App\Menu;
 
-use App\Repository\EstablishmentRepository;
-use Symfony\Bridge\Doctrine\ManagerRegistry;
+use App\Entity\Establishment;
+use Doctrine\Persistence\ManagerRegistry;
 use Knp\Menu\FactoryInterface;
 use Knp\Menu\ItemInterface;
 
@@ -16,12 +16,12 @@ class MenuBuilder
         $this->factory = $factory;
     }
 
-    public function createMainSubMenu (ManagerRegistry $doctrine, array $options) : ItemInterface
+    public function createMainSubMenu (array $options) : ItemInterface
     {
         $menu = $this->factory->createItem('mySubMenu');
 
-        $repository = $doctrine->getRepository(EstablishmentRepository::class);
-        $establishment = $repository->findAll();
+        $entityManager = $this->container->get('doctrine')->getManager();
+        $establishment = $entityManager->getRepository(Establishment::class)->findAll();
 
         $menu->addChild('Establishments', [
             'route'=>'establishment_homepage',
