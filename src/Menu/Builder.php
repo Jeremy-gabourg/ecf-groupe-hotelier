@@ -8,13 +8,18 @@ use Knp\Menu\ItemInterface;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerAwareTrait;
 
-final class Builder implements ContainerAwareInterface
+class MenuBuilder
 {
-    use ContainerAwareTrait;
+    private $factory;
 
-    public function mainSubMenu(FactoryInterface $factory, array $options) : ItemInterface
+    public function __construct(FactoryInterface $factory)
     {
-        $menu = $factory->createItem('mySubMenu');
+        $this->factory = $factory;
+    }
+
+    public function createMainSubMenu (array $options) : ItemInterface
+    {
+        $menu = $this->factory->createItem('mySubMenu');
 
         $em = $this->container->get('doctrine')->getManager();
         $establishment = $em->getRepository(EstablishmentRepository::class)->findAll();
