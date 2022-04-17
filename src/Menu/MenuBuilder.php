@@ -3,17 +3,19 @@
 namespace App\Menu;
 
 use App\Entity\Establishment;
-use Doctrine\Persistence\ManagerRegistry;
 use Knp\Menu\FactoryInterface;
 use Knp\Menu\ItemInterface;
+use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 
 class MenuBuilder
 {
     private $factory;
+    private $security;
 
-    public function __construct(FactoryInterface $factory)
+    public function __construct(FactoryInterface $factory, AuthorizationCheckerInterface $security)
     {
         $this->factory = $factory;
+        $this->security = $security;
     }
 
     public function createMainSubMenu (array $options) : ItemInterface
