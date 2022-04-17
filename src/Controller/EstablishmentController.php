@@ -13,9 +13,9 @@ class EstablishmentController extends AbstractController
     /**
      * @Route(
      *     "/establishment/{id?1}",
-     *     name: "establishment_homepage",
-     *     methods: {"GET"},
-     *     requirements:{"id"="[1-7]"}
+     *     name="establishment_homepage",
+     *     methods={"GET"},
+     *     requirements={"id"="[1-7]"}
      *     )
      */
 
@@ -27,6 +27,7 @@ class EstablishmentController extends AbstractController
 
         return $this->render('establishment/establishment.html.twig', [
             'id' => $id,
+            'establishment'=>$establishment,
         ]);
     }
 }
