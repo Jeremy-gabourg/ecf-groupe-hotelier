@@ -11,7 +11,7 @@ class ManageSuiteController extends AbstractController
     #[Route('/manage/suite', name: 'app_manage_suite')]
     public function index(): Response
     {
-        return $this->render('manage_suite/index.html.twig', [
+        return $this->render('manage_suite/manage_suite.html.twig', [
             'controller_name' => 'ManageSuiteController',
         ]);
     }

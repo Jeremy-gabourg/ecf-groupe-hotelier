@@ -3,8 +3,9 @@
 namespace App\Form;
 
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
+use App\Entity\Establishment;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -21,17 +22,11 @@ class SearchDisplayType extends AbstractType
                 'label'=>'Départ',
                 'widget'=>'single_text',
             ])
-            ->add('establishment', ChoiceType::class, [
-                'label'=>'Etablissement',
-                'choices' => [
-                    'Etablissement 1'=>1,
-                    'Etablissement 2'=>2,
-                    'Etablissement 3'=>3,
-                    'Etablissement 4'=>4,
-                    'Etablissement 5'=>5,
-                    'Etablissement 6'=>6,
-                    'Etablissement 7'=>7
-                ]
+            ->add('establishment', EntityType::class, [
+                'label'=>'Hôtel',
+                'class'=>Establishment::class,
+                'choice_label'=>'establishmentName',
+                'choice_value'=>'id'
             ]);
     }
 

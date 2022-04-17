@@ -11,7 +11,7 @@ class ContactMessageController extends AbstractController
     #[Route('/contact/message', name: 'app_contact_message')]
     public function index(): Response
     {
-        return $this->render('contact_message/index.html.twig', [
+        return $this->render('contact_message/contact_message.html.twig', [
             'controller_name' => 'ContactMessageController',
         ]);
     }

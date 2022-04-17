@@ -3,9 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\GalleryRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
 #[ORM\Entity(repositoryClass: GalleryRepository::class)]
 class Gallery
@@ -27,6 +26,9 @@ class Gallery
 
     #[ORM\OneToOne(inversedBy: 'gallery', targetEntity: Establishment::class, cascade: ['persist', 'remove'])]
     private $establishmentId;
+
+    #[ORM\Column(type: 'string', length: 255)]
+    private $path;
 
     public function getId(): ?int
     {
@@ -80,4 +82,28 @@ class Gallery
 
         return $this;
     }
+
+    public function getPath(): ?string
+    {
+        return $this->path;
+    }
+
+    public function setPath(string $path): self
+    {
+        $this->path = $path;
+
+        return $this;
+    }
+
+//    /**
+//     * @Assert\Callback(methods={"checkLinkedEntityValidation"})
+//     */
+//    public function checkLinkedEntityValidation (ExecutionContextInterface $context){
+//        $establishment = $this->getEstablishmentId();
+//        $suite = $this->getSuiteId();
+//
+//        if(empty($establishment)&& empty($suite)){
+//            $context->addViolation('Veuillez lier au moins une chambre ou un établissement');
+//        }
+//    }
 }

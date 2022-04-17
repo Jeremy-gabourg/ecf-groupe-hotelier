@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+
+<title>Hello ManageGalleryController!</title>
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="example-wrapper">
+    <h1>Hello ! ✅</h1>
+
+    <div>
+        {{ form_start(form) }}
+        <div>
+            {{ form_errors(form) }}
+        </div>
+
+        <div class="row">
+            <div class="col">
+                {{ form_row(form.galleryName) }}
+            </div>
+            <div class="col">
+                {{ form_row(form.establishment) }}
+            </div>
+            <div class="col">
+                {{ form_row(form.suite) }}
+            </div>
+            <div class="col">
+                {{ form_row(form.highlightedPhoto) }}
+            </div>
+            <div class="col">
+                {{ form_row(form.photos) }}
+            </div>
+        </div>
+        <input class="btn btn-outline-primary" type="submit" value="Enregistrer la gallerie"/>
+        {{ form_end(form) }}
+    </div>
+</div>
+{% endblock %}

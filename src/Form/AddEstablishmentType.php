@@ -31,45 +31,6 @@ class AddEstablishmentType extends AbstractType
             ->add('description', TextareaType::class, [
                 'label'=>'Description'
             ])
-            ->add('highlightedPhoto', FileType::class, [
-                'label'=>'Photo ou vidéo mise en avant',
-                'required' => false,
-                'mapped'=>false,
-                'constraints' => [
-                    new File([
-                        'maxSize' => '40000k',
-                        'mimeTypes' => [
-                            'image/jpeg',
-                            'image/png',
-                            'image/webp',
-                            'video/webm',
-                            'video/mp4'
-                        ],
-                        'mimeTypesMessage' => 'Veuillez sélectionner un fichier dans un des formats acceptés : JPEG, PNG, WEBP, WEBM ou MP4'
-                    ])
-                ]
-            ])
-            ->add('gallery', FileType::class, [
-                'label'=>'Gallerie de photos/vidéos',
-                'multiple'=>true,
-                'mapped'=>false,
-                'required' => false,
-                'constraints' => [
-                    new All([
-                        new File([
-                            'maxSize' => '40000k',
-                            'mimeTypes' => [
-                                'image/jpeg',
-                                'image/png',
-                                'image/webp',
-                                'video/webm',
-                                'video/mp4'
-                            ],
-                            'mimeTypesMessage' => 'Veuillez sélectionner un fichier dans un des formats acceptés : JPEG, PNG, WEBP, WEBM ou MP4'
-                        ])
-                    ])
-                ]]
-                    )
             ->add('manager', EntityType::class, [
                 'label'=>'Manager',
                 'class'=>User::class,
