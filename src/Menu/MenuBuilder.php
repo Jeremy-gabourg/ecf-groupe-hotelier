@@ -3,11 +3,9 @@
 namespace App\Menu;
 
 use App\Repository\EstablishmentRepository;
-use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Bridge\Doctrine\ManagerRegistry;
 use Knp\Menu\FactoryInterface;
 use Knp\Menu\ItemInterface;
-use Symfony\Component\DependencyInjection\ContainerAwareInterface;
-use Symfony\Component\DependencyInjection\ContainerAwareTrait;
 
 class MenuBuilder
 {
@@ -18,12 +16,12 @@ class MenuBuilder
         $this->factory = $factory;
     }
 
-    public function createMainSubMenu (array $options, ManagerRegistry $doctrine) : ItemInterface
+    public function createMainSubMenu (ManagerRegistry $doctrine, array $options) : ItemInterface
     {
         $menu = $this->factory->createItem('mySubMenu');
 
         $repository = $doctrine->getRepository(EstablishmentRepository::class);
-       $establishment = $repository->findAll();
+        $establishment = $repository->findAll();
 
         $menu->addChild('Establishments', [
             'route'=>'establishment_homepage',
