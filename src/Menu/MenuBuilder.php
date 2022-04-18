@@ -2,33 +2,34 @@
 
 namespace App\Menu;
 
-use App\Entity\Establishment;
+use App\Repository\EstablishmentRepository;
 use Knp\Menu\FactoryInterface;
 use Knp\Menu\ItemInterface;
-use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
+use Symfony\Component\HttpFoundation\RequestStack;
 
 class MenuBuilder
 {
     private $factory;
-    private $security;
 
-    public function __construct(FactoryInterface $factory, AuthorizationCheckerInterface $security)
+    public function __construct(FactoryInterface $factory)
     {
         $this->factory = $factory;
-        $this->security = $security;
     }
 
-    public function createMainSubMenu (array $options) : ItemInterface
+    public function createMainSubMenu (RequestStack $requestStack,EstablishmentRepository $establishmentRepository) : ItemInterface
     {
         $menu = $this->factory->createItem('mySubMenu');
 
-        $entityManager = $this->container->get('doctrine')->getManager();
-        $establishment = $entityManager->getRepository(Establishment::class)->findAll();
+        $establishments = $establishmentRepository->findAll();
 
-        $menu->addChild('Establishments', [
-            'route'=>'establishment_homepage',
-            'routeParameters'=>['id'=>$establishment->getId()]
-        ]);
+        foreach($establishments as $establishment) {
+            $menu->addChild('establishment', [
+                'label'=>$establishment->getEstablishmentName(),
+                'route'=>'establishment_homepage',
+                'routeParameters'=>['id'=>$establishment->getId()]
+            ]);
+        }
+
         return $menu;
     }
 }

@@ -25,7 +25,9 @@ class SearchDisplayType extends AbstractType
             ->add('establishment', EntityType::class, [
                 'label'=>'Hôtel',
                 'class'=>Establishment::class,
-                'choice_label'=>'establishmentName',
+                'choice_label'=>function($establishment){
+                    return $establishment->getEstablishmentName(). ' à '.$establishment->getCity();
+                },
                 'choice_value'=>'id'
             ]);
     }
