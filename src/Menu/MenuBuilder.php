@@ -18,18 +18,18 @@ class MenuBuilder
 
     public function createMainSubMenu (RequestStack $requestStack,EstablishmentRepository $establishmentRepository) : ItemInterface
     {
-        $menu = $this->factory->createItem('mySubMenu');
+        $submenu = $this->factory->createItem('mySubMenu');
 
         $establishments = $establishmentRepository->findAll();
 
         foreach($establishments as $establishment) {
-            $menu->addChild('establishment', [
-                'label'=>$establishment->getEstablishmentName(),
+            $id = $establishment->getId();
+            $submenu->addChild('establishment'.$id, [
+                'label'=>$establishment->getEstablishmentName().' à '.$establishment->getCity(),
                 'route'=>'establishment_homepage',
-                'routeParameters'=>['id'=>$establishment->getId()]
+                'routeParameters'=>['id'=>$id]
             ]);
         }
-
-        return $menu;
+        return $submenu;
     }
 }
