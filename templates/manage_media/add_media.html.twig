@@ -19,24 +19,24 @@
 </div>
 
 <div>
-    {{ form_start(form) }}
+    {{ form_start(addMediaForm) }}
     <div>
-        {{ form_errors(form) }}
+        {{ form_errors(addMediaForm) }}
     </div>
 
     <div class="row">
         <div class="col">
-            {{ form_row(form.file) }}
+            {{ form_row(addMediaForm.file) }}
         </div>
         <div class="col">
-            {{ form_row(form.gallery) }}
+            {{ form_row(addMediaForm.gallery) }}
         </div>
         <div class="col">
-            {{ form_row(form.linkedPage) }}
+            {{ form_row(addMediaForm.linkedPage) }}
         </div>
     </div>
-    <input class="btn btn-outline-primary" type="submit" value="Enregistrer le fichier"/>
-    {{ form_end(form) }}
+    {{form_row(addMediaForm.submit)}}
+    {{ form_end(addMediaForm) }}
 </div>
 
 {% endblock %}

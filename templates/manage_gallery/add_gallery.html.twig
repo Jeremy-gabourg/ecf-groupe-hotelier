@@ -12,30 +12,30 @@
     <h1>Hello ! ✅</h1>
 
     <div>
-        {{ form_start(form) }}
+        {{ form_start(addGalleryForm) }}
         <div>
-            {{ form_errors(form) }}
+            {{ form_errors(addGalleryForm) }}
         </div>
 
         <div class="row">
             <div class="col">
-                {{ form_row(form.galleryName) }}
+                {{ form_row(addGalleryForm.galleryName) }}
             </div>
             <div class="col">
-                {{ form_row(form.establishment) }}
+                {{ form_row(addGalleryForm.establishment) }}
             </div>
             <div class="col">
-                {{ form_row(form.suite) }}
+                {{ form_row(addGalleryForm.suite) }}
             </div>
             <div class="col">
-                {{ form_row(form.highlightedPhoto) }}
+                {{ form_row(addGalleryForm.highlightedPhoto) }}
             </div>
             <div class="col">
-                {{ form_row(form.photos) }}
+                {{ form_row(addGalleryForm.photos) }}
             </div>
         </div>
-        <input class="btn btn-outline-primary" type="submit" value="Enregistrer la gallerie"/>
-        {{ form_end(form) }}
+        {{ form_row(addGalleryForm.submit)}}
+        {{ form_end(addGalleryForm) }}
     </div>
 </div>
 {% endblock %}

@@ -51,8 +51,8 @@ class ManageUserController extends AbstractController
         }
 
 
-        return $this->renderForm('manage_user/manage_user.html.twig', [
-            'form' => $form,
+        return $this->renderForm('manage_user/add_user.html.twig', [
+            'addUserForm' => $form,
         ]);
     }
 
@@ -61,7 +61,7 @@ class ManageUserController extends AbstractController
 //    {
 //        $form = $this->createForm(AddUserType::class);
 //        $form->handleRequest($request);
-//        return $this->renderForm('manage_user/manage_user.html.twig', [
+//        return $this->renderForm('manage_user/add_user.html.twig', [
 //            'form' => $form,
 //        ]);
 //    }

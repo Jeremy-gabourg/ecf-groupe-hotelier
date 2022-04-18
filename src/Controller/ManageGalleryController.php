@@ -87,7 +87,7 @@ class ManageGalleryController extends AbstractController
         }
 
         return $this->renderForm('manage_gallery/add_gallery.html.twig', [
-            'form' => $form,
+            'addGalleryForm' => $form,
         ]);
     }
 }

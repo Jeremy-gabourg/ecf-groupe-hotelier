@@ -36,7 +36,12 @@ class RegistrationFormType extends AbstractType
                     ]),
                 ],
             ])
-        ;
+            ->add('submit', SubmitType::class, [
+                'label'=>'Se connecter',
+                'attr'=>[
+                    'class'=>'btn btn-outline-primary'
+                ]
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

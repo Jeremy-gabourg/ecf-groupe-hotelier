@@ -8,6 +8,7 @@ use Symfony\Component\Form\Extension\Core\Type\DateType;
 use App\Entity\Establishment;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 class SearchDisplayType extends AbstractType
 {
@@ -29,7 +30,14 @@ class SearchDisplayType extends AbstractType
                     return $establishment->getEstablishmentName(). ' à '.$establishment->getCity();
                 },
                 'choice_value'=>'id'
-            ]);
+            ])
+            ->add('submit', SubmitType::class, [
+                'label'=>'Rechercher',
+                'attr'=>[
+                    'class'=>'btn btn-outline-secondary'
+                ]
+            ])
+        ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void

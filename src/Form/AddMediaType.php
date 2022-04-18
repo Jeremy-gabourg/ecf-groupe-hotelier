@@ -10,6 +10,7 @@ use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Validator\Constraints\File;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 class AddMediaType extends AbstractType
 {
@@ -48,6 +49,12 @@ class AddMediaType extends AbstractType
                         ],
                         'mimeTypesMessage' => 'Veuillez sélectionner un fichier dans un des formats acceptés : JPEG, PNG, WEBP, WEBM ou MP4'
                     ])
+                ]
+            ])
+            ->add('submit', SubmitType::class, [
+                'label'=>'Enregistrer le média',
+                'attr'=>[
+                    'class'=>'btn btn-outline-primary'
                 ]
             ])
         ;

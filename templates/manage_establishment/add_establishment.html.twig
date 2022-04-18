@@ -19,29 +19,29 @@
 </div>
 
     <div>
-        {{ form_start(form) }}
+        {{ form_start(addEstablishmentForm) }}
         <div>
-            {{ form_errors(form) }}
+            {{ form_errors(addEstablishmentForm) }}
         </div>
 
         <div class="row">
             <div class="col">
-                {{ form_row(form.establishmentName) }}
+                {{ form_row(addEstablishmentForm.establishmentName) }}
             </div>
             <div class="col">
-                {{ form_row(form.address) }}
+                {{ form_row(addEstablishmentForm.address) }}
             </div>
             <div class="col">
-                {{ form_row(form.city) }}
+                {{ form_row(addEstablishmentForm.city) }}
             </div>
             <div class="col">
-                {{ form_row(form.description) }}
+                {{ form_row(addEstablishmentForm.description) }}
             </div>
             <div class="col">
-                {{ form_row(form.manager) }}
+                {{ form_row(addEstablishmentForm.manager) }}
             </div>
         </div>
-        <input class="btn btn-outline-primary" type="submit" value="Enregistrer l'établissement"/>
-        {{ form_end(form) }}
+        {{ form_row(addEstablishmentForm.submit)}}
+        {{ form_end(addEstablishmentForm) }}
     </div>
 {% endblock %}

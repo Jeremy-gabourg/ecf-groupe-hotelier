@@ -9,6 +9,8 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Doctrine\ORM\EntityRepository;
 
 class AddUserType extends AbstractType
 {
@@ -30,9 +32,19 @@ class AddUserType extends AbstractType
             ->add('role', EntityType::class, [
                 'label'=>'Rôle',
                 'class'=>Role::class,
-                'choice_label'=>'RoleName',
+                'query_builder'=>function(EntityRepository $er){
+                    return $er->createQueryBuilder('r')
+                        ->orderBy('r.roleName', 'DESC');
+                },
+                'choice_label'=>'roleName',
                 'choice_value'=>'id',
-            ]);
+            ])
+            ->add('submit', SubmitType::class, [
+            'label'=>'Enregistrer l\'utilisateur',
+            'attr'=>[
+                'class'=>'btn btn-outline-primary'
+            ]
+        ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

@@ -12,8 +12,10 @@
     <div>
         {{ form_row(registrationForm.plainPassword) }}
     </div>
+    <div>
+        {{form_row(registrationForm.submit)}}
+    </div>
 </div>
 
-        <button type="submit" class="btn btn-outline-primary">Créer mon compte</button>
     {{ form_end(registrationForm) }}
 {% endblock %}

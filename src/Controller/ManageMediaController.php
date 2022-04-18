@@ -70,7 +70,7 @@ class ManageMediaController extends AbstractController
         }
 
         return $this->renderForm('manage_media/add_media.html.twig', [
-            'form'=>$form,
+            'addMediaForm'=>$form,
         ]);
     }
 }

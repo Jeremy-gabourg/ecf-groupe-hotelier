@@ -12,30 +12,30 @@
     <h1>Hello ! ✅</h1>
 
     <div>
-        {{ form_start(form) }}
+        {{ form_start(addSuiteForm) }}
         <div>
-            {{ form_errors(form) }}
+            {{ form_errors(addSuiteForm) }}
         </div>
 
         <div class="row">
             <div class="col">
-                {{ form_row(form.establishment) }}
+                {{ form_row(addSuiteForm.establishment) }}
             </div>
             <div class="col">
-                {{ form_row(form.suiteTitle) }}
+                {{ form_row(addSuiteForm.suiteTitle) }}
             </div>
             <div class="col">
-                {{ form_row(form.price) }}
+                {{ form_row(addSuiteForm.price) }}
             </div>
             <div class="col">
-                {{ form_row(form.suiteDescription) }}
+                {{ form_row(addSuiteForm.suiteDescription) }}
             </div>
             <div class="col">
-                {{ form_row(form.bookingLink) }}
+                {{ form_row(addSuiteForm.bookingLink) }}
             </div>
         </div>
-        <input class="btn btn-outline-primary" type="submit" value="Enregistrer la suite"/>
-        {{ form_end(form) }}
+        {{form_row(addSuiteForm.submit)}}
+        {{ form_end(addSuiteForm) }}
     </div>
 </div>
 {% endblock %}

@@ -19,29 +19,29 @@
 </div>
 
     <div>
-        {{ form_start(form) }}
+        {{ form_start(addUserForm) }}
         <div>
-            {{ form_errors(form) }}
+            {{ form_errors(addUserForm) }}
         </div>
 
         <div class="row">
             <div class="col">
-                {{ form_row(form.firstName) }}
+                {{ form_row(addUserForm.firstName) }}
             </div>
             <div class="col">
-                {{ form_row(form.lastName) }}
+                {{ form_row(addUserForm.lastName) }}
             </div>
             <div class="col">
-                {{ form_row(form.email) }}
+                {{ form_row(addUserForm.email) }}
             </div>
             <div class="col">
-                {{ form_row(form.role) }}
+                {{ form_row(addUserForm.role) }}
             </div>
             <div class="col">
-                {{ form_row(form.password) }}
+                {{ form_row(addUserForm.password) }}
             </div>
         </div>
-        <input class="btn btn-outline-primary" type="submit" value="Enregistrer l'utilisateur"/>
-        {{ form_end(form) }}
+        {{form_row(addUserForm.submit)}}
+        {{ form_end(addUserForm) }}
     </div>
 {% endblock %}

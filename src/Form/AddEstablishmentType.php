@@ -13,6 +13,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\File;
 use Symfony\Component\Validator\Constraints\All;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 class AddEstablishmentType extends AbstractType
 {
@@ -42,6 +43,12 @@ class AddEstablishmentType extends AbstractType
                 },
                 'choice_label'=>'userName',
                 'choice_value'=>'id'
+            ])
+            ->add('submit', SubmitType::class, [
+                'label'=>'Enregistrer l\'établissement',
+                'attr'=>[
+                    'class'=>'btn btn-outline-primary'
+                ]
             ])
         ;
     }

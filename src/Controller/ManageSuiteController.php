@@ -40,10 +40,10 @@ class ManageSuiteController extends AbstractController
             $entityManager->persist($suite);
             $entityManager->flush();
 
-            return $this->redirectToRoute('home_page');
+            return $this->redirectToRoute('app_manage_suite');
         }
         return $this->renderForm('manage_suite/add_suite.html.twig', [
-            'form' => $form,
+            'addSuiteForm' => $form,
         ]);
     }
 }

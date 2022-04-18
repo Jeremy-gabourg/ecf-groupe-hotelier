@@ -45,7 +45,7 @@ class ManageEstablishmentController extends AbstractController
         }
 
         return $this->renderForm('manage_establishment/add_establishment.html.twig', [
-            'form' => $form,
+            'addEstablishmentForm' => $form,
         ]);
     }
 }
