@@ -3,7 +3,7 @@
 {% block title %}Hello ManageGalleryController!{% endblock %}
 
 {% block javascripts %}
-    {{ encore_entry_script_tags('addGallery') }}
+    <script src="../../assets/add_gallery.js"></script>
 {% endblock %}
 
 {% block body %}
@@ -27,9 +27,6 @@
             </div>
             <div class="col">
                 {{ form_row(addGalleryForm.establishment) }}
-            </div>
-            <div class="col">
-                {{ form_row(addGalleryForm.suite) }}
             </div>
             <div class="col">
                 {{ form_row(addGalleryForm.highlightedPhoto) }}

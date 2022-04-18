@@ -32,18 +32,18 @@ class AddGalleryType extends AbstractType
                 'placeholder'=>'Aucun',
                 'choice_value'=>'id',
             ])
-            ->add('suite', EntityType::class, [
-                'label'=>'Suite associée ?',
-                'required'=>false,
-                'placeholder'=>'Si laissé vide, la gallerie sera rattachée à la page établissement',
-                'class'=>Suite::class,
-                'query_builder'=>function(EntityRepository $er, $establishmentId){
-                    return $er->createQueryBuilder('s')
-                        ->where('s.establishementId = :val')
-                        ->setParameter('val', $establishmentId)
-                        ->orderBy('s.title', 'ASC');
-                    },
-                ])
+//            ->add('suite', EntityType::class, [
+//                'label'=>'Suite associée ?',
+//                'required'=>false,
+//                'placeholder'=>'Si laissé vide, la gallerie sera rattachée à la page établissement',
+//                'class'=>Suite::class,
+//                'query_builder'=>function(EntityRepository $er, $establishmentId){
+//                    return $er->createQueryBuilder('s')
+//                        ->where('s.establishementId = :val')
+//                        ->setParameter('val', $establishmentId)
+//                        ->orderBy('s.title', 'ASC');
+//                    },
+//                ])
             ->add('highlightedPhoto', FileType::class, [
                 'label'=>'Photo ou vidéo mise en avant',
                 'mapped'=>false,
