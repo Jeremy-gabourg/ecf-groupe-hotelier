@@ -28,10 +28,6 @@ class ManageGalleryController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()){
 
             $data = $form->getData();
-
-            $highlightedPhoto = $data['highlightedPhoto'];
-            $extension = $highlightedPhoto->guessExtension();
-
             $establishment = $data['establishment'];
             $suite = $data['suite'];
 
@@ -40,6 +36,9 @@ class ManageGalleryController extends AbstractController
             } else {
                 $path = $this->getParameter('media_directory').'/'.$establishment;
             }
+
+            $highlightedPhoto = $data['highlightedPhoto'];
+            $extension = $highlightedPhoto->guessExtension();
 
             if (!$extension) {
                 $extension = '.mpeg';
@@ -66,18 +65,20 @@ class ManageGalleryController extends AbstractController
                     $safePhotoName = $slugger->slug($originalPhotoName);
                     $newPhotoName = $safePhotoName . '-' . uniqid() . '.' . $photoExtension;
                 }
-                try {$file->move($path, $newFilename);}
+                try {$file->move($path, $newPhotoName);}
                 catch (FileException $e) {
                     echo 'Une erreur est survenue :'.$e->getMessage();
                 }
             }
 
-            $name = $data['galleryName'];
             $gallery->setEstablishmentId($establishment->getId());
             if($suite!==null){
                 $gallery->setSuiteId($suite->getId());
             }
+
+            $name = $data['galleryName'];
             $gallery->setGalleryName($name);
+
             $gallery->setPath($path);
 
             $entityManager->persist($gallery);
