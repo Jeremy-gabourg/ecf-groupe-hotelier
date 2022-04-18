@@ -1,6 +1,6 @@
 {% extends 'base_back.html.twig' %}
 
-{% block title %}Hello ManageGalleryController!{% endblock %}
+{% block title %}Hello ManageSuiteController!{% endblock %}
 
 {% block body %}
 <style>
@@ -19,22 +19,22 @@
 
         <div class="row">
             <div class="col">
-                {{ form_row(form.galleryName) }}
-            </div>
-            <div class="col">
                 {{ form_row(form.establishment) }}
             </div>
             <div class="col">
-                {{ form_row(form.suite) }}
+                {{ form_row(form.suiteTitle) }}
             </div>
             <div class="col">
-                {{ form_row(form.highlightedPhoto) }}
+                {{ form_row(form.price) }}
             </div>
             <div class="col">
-                {{ form_row(form.photos) }}
+                {{ form_row(form.suiteDescription) }}
+            </div>
+            <div class="col">
+                {{ form_row(form.bookingLink) }}
             </div>
         </div>
-        <input class="btn btn-outline-primary" type="submit" value="Enregistrer la gallerie"/>
+        <input class="btn btn-outline-primary" type="submit" value="Enregistrer la suite"/>
         {{ form_end(form) }}
     </div>
 </div>

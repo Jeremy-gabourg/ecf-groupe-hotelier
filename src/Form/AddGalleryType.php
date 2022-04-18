@@ -24,14 +24,14 @@ class AddGalleryType extends AbstractType
             ->add('establishment', EntityType::class, [
                 'label'=>'Etablissement associé',
                 'class'=>Establishment::class,
-                'label_choice'=>'establishmentName',
+                'choice_label'=>'establishmentName',
             ])
             ->add('suite', EntityType::class, [
-                'label'=>'Chambre associée',
+                'label'=>'Suite associée',
                 'required'=>false,
-                'placeholder'=>'Chmabre associée ou gallerie liée à la page établissement?',
+                'placeholder'=>'Suite associée ou gallerie liée à la page établissement?',
                 'class'=>Suite::class,
-                'label_choice'=>'suiteName',
+                'choice_label'=>'title',
             ])
             ->add('highlightedPhoto', FileType::class, [
                 'label'=>'Photo ou vidéo mise en avant',

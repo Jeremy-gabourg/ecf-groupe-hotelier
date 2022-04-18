@@ -95,15 +95,4 @@ class Gallery
         return $this;
     }
 
-//    /**
-//     * @Assert\Callback(methods={"checkLinkedEntityValidation"})
-//     */
-//    public function checkLinkedEntityValidation (ExecutionContextInterface $context){
-//        $establishment = $this->getEstablishmentId();
-//        $suite = $this->getSuiteId();
-//
-//        if(empty($establishment)&& empty($suite)){
-//            $context->addViolation('Veuillez lier au moins une chambre ou un établissement');
-//        }
-//    }
 }

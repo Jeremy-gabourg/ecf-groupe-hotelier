@@ -44,7 +44,7 @@ class ManageEstablishmentController extends AbstractController
             return $this->redirectToRoute('home_page');
         }
 
-        return $this->renderForm('manage_establishment/manage_establishment.html.twig', [
+        return $this->renderForm('manage_establishment/add_establishment.html.twig', [
             'form' => $form,
         ]);
     }

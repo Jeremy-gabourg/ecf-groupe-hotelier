@@ -30,7 +30,7 @@ class AddMediaType extends AbstractType
             ->add('gallery', EntityType::class, [
                 'label'=>'Gallerie',
                 'class'=>Gallery::class,
-                'label_choice'=>'galleryName',
+                'choice_label'=>'galleryName',
             ])
             ->add('file', FileType::class, [
                 'label' => 'Media (Images ou vidéos)',
