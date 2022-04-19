@@ -1,11 +1,50 @@
-<!DOCTYPE html>
+{% extends 'base_front.html.twig' %}
 
-<title>Nous découvrir</title>
+{% block title %}Nous découvrir{% endblock %}
 
 {% block body %}
 
-<div class="example-wrapper">
-    <h1 class="pt-5">Nous découvrir</h1>
-
+<div class="container-fluid">
+    <div class="presentation-wrapper">
+        <h1 class="pt-5 text-center text-primary fs-1">Nous découvrir</h1>
+        <img src="{{ asset ("ressources/uploads/about_us/mahrous-houses-m8434Nuam5M-unsplash-625f21a2e5328.jpg")}}"
+             class="presentation_video"
+             alt="Photo lit avec bouquet de roses">
+        <div class="chevron-container">
+            <div class="chevron"></div>
+            <div class="chevron"></div>
+            <div class="chevron"></div>
+        </div>
+    </div>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla eros tortor, posuere vel quam in, sodales laoreet
+        est. Sed viverra ipsum at sagittis luctus. Mauris imperdiet orci quis consectetur feugiat. Morbi aliquet tempus
+        cursus. Vestibulum tincidunt accumsan enim. Proin luctus sollicitudin risus, sed commodo enim finibus in. Donec
+        scelerisque lorem quis justo condimentum, id finibus velit iaculis. Curabitur interdum vestibulum porta. Proin
+        dignissim facilisis odio, eget consequat lacus auctor et. Maecenas sit amet sagittis tortor, et gravida ipsum.
+        Ut ultricies, ex nec consequat vehicula, est velit ullamcorper ipsum, quis suscipit elit diam nec ligula. Aenean
+        a suscipit nisl. Suspendisse potenti. Nam erat quam, semper non faucibus vel, consectetur luctus dolor. In
+        imperdiet suscipit malesuada. Pellentesque nec aliquet diam.</p>
+    <p>Mauris imperdiet nibh risus, quis sagittis sapien vestibulum ac. Praesent ante neque, pulvinar sit amet fermentum
+        et, dictum ac lacus. Vivamus nec dapibus arcu, id aliquet dui. Nulla at eleifend nisl, id congue nisl. Donec non
+        sapien non ante pulvinar dictum sed a justo. Donec sit amet eros ut metus eleifend commodo. Maecenas eget feugiat
+        nibh. Etiam et mauris tincidunt, porttitor dui ut, tempor est. Sed imperdiet nisl in egestas suscipit. Praesent
+        nec aliquam dui. Sed mi lectus, pulvinar quis viverra ac, ultricies non velit. Proin semper dapibus orci iaculis
+        ullamcorper. Curabitur sed cursus odio. Suspendisse viverra molestie ultrices.</p>
+    <p>Maecenas non orci urna. Nullam at ipsum libero. Nulla mi justo, tristique ac hendrerit quis, accumsan sit amet
+        est. Cras lectus nulla, scelerisque aliquam imperdiet sed, venenatis nec mauris. Sed efficitur augue non odio
+        congue, id vulputate urna ornare. Praesent aliquet eleifend pretium. Praesent dapibus faucibus mauris, nec blandit
+        nisl dictum nec. Donec fermentum nisl eu mi mattis dictum. Vivamus at sagittis orci, rutrum euismod dolor. Duis
+        vestibulum, erat rhoncus aliquet fermentum, neque purus sollicitudin magna, sit amet placerat orci leo sed dui.
+        Interdum et malesuada fames ac ante ipsum primis in faucibus. Nam id ipsum accumsan, scelerisque diam eu, sagittis
+        elit. Quisque orci augue, viverra ut facilisis eu, dictum vel nibh. Proin eu tristique ipsum, vel blandit libero.
+        Curabitur tellus orci, accumsan sed convallis vel, tincidunt eu turpis.</p>
+    <p>Duis sodales tellus quis risus ullamcorper sollicitudin in et nisl. Praesent fringilla imperdiet mauris id
+        elementum. Curabitur dolor lectus, fermentum sed rutrum vel, hendrerit eget purus. Morbi lacinia ut dui laoreet
+        posuere. Nulla facilisi. Aliquam elementum interdum neque, sit amet ultricies odio fringilla non. Morbi sit amet
+        rhoncus libero, consectetur hendrerit enim. Fusce id elit est. Duis blandit accumsan nulla, sed condimentum mi
+        mattis ac. Duis vel sem leo. Vestibulum congue id sem vel rhoncus. Suspendisse id libero mauris. Praesent lacinia,
+        quam vel varius mollis, sapien nibh consectetur dui, quis commodo turpis turpis a sem. Vestibulum convallis
+        feugiat lorem, et sollicitudin lacus pellentesque sed. Etiam tempor pellentesque erat, a tempus sem tristique
+        euismod.</p>
 </div>
 {% endblock %}
