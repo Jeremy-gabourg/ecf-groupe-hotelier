@@ -12,7 +12,7 @@ establishment.addEventListener('change', (event)=> {
         select.setAttribute('id', 'add_gallery_suite')
         select.setAttribute('name', 'add_gallery[suite]')
 
-        fetch('../src/Controller/ServerConnexionController.php')
+        fetch('../src/Repository/GalleryRepository.php')
             .then((response) => {
                 if (response.ok) {
                     return response.json();

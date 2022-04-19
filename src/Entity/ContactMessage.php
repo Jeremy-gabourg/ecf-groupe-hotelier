@@ -31,6 +31,12 @@ class ContactMessage
     #[ORM\Column(type: 'boolean')]
     private $isOpened;
 
+    #[ORM\Column(type: 'string', length: 255)]
+    private $email;
+
+    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'contactMessages')]
+    private $userId;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -104,6 +110,30 @@ class ContactMessage
     public function setIsOpened(bool $isOpened): self
     {
         $this->isOpened = $isOpened;
+
+        return $this;
+    }
+
+    public function getEmail(): ?string
+    {
+        return $this->email;
+    }
+
+    public function setEmail(string $email): self
+    {
+        $this->email = $email;
+
+        return $this;
+    }
+
+    public function getUserId(): ?User
+    {
+        return $this->userId;
+    }
+
+    public function setUserId(?User $userId): self
+    {
+        $this->userId = $userId;
 
         return $this;
     }

@@ -24,9 +24,6 @@ class User implements PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'string', length: 180, unique: true)]
     private $email;
 
-//    #[ORM\Column(type: 'json')]
-//    private $roles = [];
-
     #[ORM\Column(type: 'string')]
     private $password;
 
@@ -49,10 +46,14 @@ class User implements PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'string', length: 255)]
     private $userName;
 
+    #[ORM\OneToMany(mappedBy: 'userId', targetEntity: ContactMessage::class)]
+    private $contactMessages;
+
     public function __construct()
     {
         $this->Roles = new ArrayCollection();
         $this->reservations = new ArrayCollection();
+        $this->contactMessages = new ArrayCollection();
     }
 
     public function getId(): ?string
@@ -82,9 +83,6 @@ class User implements PasswordAuthenticatedUserInterface
         return (string) $this->email;
     }
 
-//    /**
-//     * @return Collection|Roles[]
-//     */
     public function getRoleId(): ?Role
     {
         return $this->RoleId;
@@ -119,25 +117,6 @@ class User implements PasswordAuthenticatedUserInterface
     {
         $this->plaintextPassword = null;
     }
-
-//    public function addRole(Role $role): self
-//    {
-//        if (!$this->Roles->contains($role)) {
-//            $this->Roles[] = $role;
-//            $role->addUserRole($this);
-//        }
-//
-//        return $this;
-//    }
-
-//    public function removeRole(Role $role): self
-//    {
-//        if ($this->Roles->removeElement($role)) {
-//            $role->removeUserRole($this);
-//        }
-//
-//        return $this;
-//    }
 
     public function getFirstName(): ?string
     {
@@ -223,6 +202,36 @@ class User implements PasswordAuthenticatedUserInterface
     public function setUserName(string $firstName, string $lastName): self
     {
         $this->userName = ucfirst(strtolower($firstName)).' '.strtoupper($lastName);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, ContactMessage>
+     */
+    public function getContactMessages(): Collection
+    {
+        return $this->contactMessages;
+    }
+
+    public function addContactMessage(ContactMessage $contactMessage): self
+    {
+        if (!$this->contactMessages->contains($contactMessage)) {
+            $this->contactMessages[] = $contactMessage;
+            $contactMessage->setUserId($this);
+        }
+
+        return $this;
+    }
+
+    public function removeContactMessage(ContactMessage $contactMessage): self
+    {
+        if ($this->contactMessages->removeElement($contactMessage)) {
+            // set the owning side to null (unless already changed)
+            if ($contactMessage->getUserId() === $this) {
+                $contactMessage->setUserId(null);
+            }
+        }
 
         return $this;
     }
