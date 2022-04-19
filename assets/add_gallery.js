@@ -12,15 +12,16 @@ establishment.addEventListener('change', (event)=> {
         select.setAttribute('id', 'add_gallery_suite')
         select.setAttribute('name', 'add_gallery[suite]')
 
-        fetch('../src/Server/server.php')
+        fetch('../src/Controller/ServerConnexionController.php')
             .then((response) => {
                 if (response.ok) {
-                    response.json();
+                    return response.json();
                 } else {
                     console.error('Erreur de la réponse : ' + response.status)
                 }
             })
             .then((response) => {
+                console.log(response)
                 let input = '';
                 for (let i in response) {
                     input += `<option value={reponse[i].id}>${response[i].title}</option>`;
