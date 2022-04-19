@@ -18,19 +18,48 @@ class AddUserType extends AbstractType
     {
         $builder
             ->add('firstName', TextType::class,[
-                'label'=>'Prénom'
+                'label'=>'Prénom',
+                'attr'=>[
+                    'class'=>'form-control'
+                ],
+                'label_attr'=>[
+                    'class'=>'form-label pt-3'
+                ],
             ])
             ->add('lastName', TextType::class,[
-                'label'=>'Nom'
+                'label'=>'Nom','attr'=>[
+                    'class'=>'form-control'
+                ],
+                'label_attr'=>[
+                    'class'=>'form-label pt-3'
+                ],
             ])
             ->add('email', EmailType::class, [
-                'label'=>'Email'
+                'label'=>'Email',
+                'attr'=>[
+                    'class'=>'form-control'
+                ],
+                'label_attr'=>[
+                    'class'=>'form-label pt-3'
+                ],
             ])
             ->add('password', TextType::class, [
-                'label'=>'Mot de passe temporaire'
+                'label'=>'Mot de passe temporaire',
+                'attr'=>[
+                    'class'=>'form-control'
+                ],
+                'label_attr'=>[
+                    'class'=>'form-label pt-3'
+                ],
             ])
             ->add('role', EntityType::class, [
                 'label'=>'Rôle',
+                'attr'=>[
+                    'class'=>'form-select'
+                ],
+                'label_attr'=>[
+                    'class'=>'form-label pt-3'
+                ],
                 'class'=>Role::class,
                 'query_builder'=>function(EntityRepository $er){
                     return $er->createQueryBuilder('r')
@@ -42,7 +71,7 @@ class AddUserType extends AbstractType
             ->add('submit', SubmitType::class, [
             'label'=>'Enregistrer l\'utilisateur',
             'attr'=>[
-                'class'=>'btn btn-outline-primary'
+                'class'=>'btn btn-outline-primary mt-3'
             ]
         ]);
     }

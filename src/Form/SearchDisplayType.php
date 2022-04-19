@@ -18,13 +18,25 @@ class SearchDisplayType extends AbstractType
             ->add('arrivalDate', DateType::class,[
                 'label'=>'Arrivée',
                 'widget'=>'single_text',
+                'attr'=>[
+                    'class'=>'js-datepicker'
+                ]
             ])
             ->add('departureDate', DateType::class,[
                 'label'=>'Départ',
                 'widget'=>'single_text',
+                'attr'=>[
+                    'class'=>'js-datepicker'
+                ],
             ])
             ->add('establishment', EntityType::class, [
                 'label'=>'Hôtel',
+                'attr'=>[
+                    'class'=>'form-select'
+                ],
+                'label_attr'=>[
+                    'class'=>'form-label pt-3'
+                ],
                 'class'=>Establishment::class,
                 'choice_label'=>function($establishment){
                     return $establishment->getEstablishmentName(). ' à '.$establishment->getCity();

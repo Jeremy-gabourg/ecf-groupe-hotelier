@@ -20,6 +20,12 @@ class AddSuiteType extends AbstractType
         $builder
             ->add('establishment', EntityType::class, [
                 'label'=>'Hôtel lié',
+                'attr'=>[
+                    'class'=>'form-select'
+                ],
+                'label_attr'=>[
+                    'class'=>'form-label pt-3'
+                ],
                 'class'=>Establishment::class,
                 'choice_label'=>function($establishment){
                     return $establishment->getEstablishmentName(). ' à '.$establishment->getCity();
@@ -27,23 +33,47 @@ class AddSuiteType extends AbstractType
                 'choice_value'=>'id'
             ])
             ->add('suiteTitle', TextType::class, [
-                'label'=>'Titre de la suite'
+                'label'=>'Titre de la suite',
+                'attr'=>[
+                    'class'=>'form-control'
+                ],
+                'label_attr'=>[
+                    'class'=>'form-label pt-3'
+                ],
             ])
             ->add('price', MoneyType::class, [
                 'label'=>'Prix ',
                 'currency'=>'EUR',
+                'attr'=>[
+                    'class'=>'form-control'
+                ],
+                'label_attr'=>[
+                    'class'=>'form-label pt-3'
+                ],
                 'invalid_message'=>'Cette valeur n\'est pas valide',
             ])
             ->add('suiteDescription', TextareaType::class, [
                 'label'=>'Description',
+                'attr'=>[
+                    'class'=>'form-control'
+                ],
+                'label_attr'=>[
+                    'class'=>'form-label pt-3'
+                ],
             ])
             ->add('bookingLink', UrlType::class, [
                 'label'=>'Lien Booking',
+                'attr'=>[
+                    'class'=>'form-control'
+                ],
+                'label_attr'=>[
+                    'class'=>'form-label pt-3'
+                ],
             ])
             ->add('submit', SubmitType::class, [
                 'label'=>'Enregistrer la suite',
                 'attr'=>[
-                    'class'=>'btn btn-outline-primary'
+                    'class'=>'btn btn-outline-primary mt-3'
                 ]
             ]);
         ;

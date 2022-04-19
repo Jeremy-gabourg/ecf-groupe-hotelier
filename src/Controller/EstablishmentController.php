@@ -25,9 +25,12 @@ class EstablishmentController extends AbstractController
 
         $establishment = $entityManager->getRepository(Establishment::class)->find($id);
 
+        $establishmentName = $establishment->getEstablishmentName();
+
         return $this->render('establishment/establishment.html.twig', [
             'id' => $id,
             'establishment'=>$establishment,
+            'establishmentName'=>$establishmentName,
         ]);
     }
 }

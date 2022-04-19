@@ -42,7 +42,7 @@ class ContactController extends AbstractController
                 $contactMessage->setSubject($subject);
                 $contactMessage->setMessage($message);
                 $contactMessage->setUserIsAlreadyClient(true);
-                $contactMessage->setUserId($user->getId());
+                $contactMessage->setUserId($user);
             } else {
                 $contactMessage->setUserFirstName(ucfirst(strtolower($firstName)));
                 $contactMessage->setUserLastName(strtoupper($lastName));

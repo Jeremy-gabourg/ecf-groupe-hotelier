@@ -21,20 +21,39 @@ class AddMediaType extends AbstractType
             ->add('linkedPage', ChoiceType::class, [
                 'label'=>'Page liée',
                 'mapped' => false,
+                'attr'=>[
+                    'class'=>'form-select'
+                ],
+                'label_attr'=>[
+                    'class'=>'form-label pt-3'
+                ],
                 'choices' => [
                     'Aucune'=>null,
                     'Page d\'accueil'=>'homepage',
                     'Page de réservation'=>'reservation_page',
+                    'Page nous découvrir'=>'about_us',
                     'Page de contact'=>'contact_page',
                 ]
             ])
             ->add('gallery', EntityType::class, [
                 'label'=>'Gallerie',
+                'attr'=>[
+                    'class'=>'form-select'
+                ],
+                'label_attr'=>[
+                    'class'=>'form-label pt-3'
+                ],
                 'class'=>Gallery::class,
                 'choice_label'=>'galleryName',
             ])
             ->add('file', FileType::class, [
                 'label' => 'Media (Images ou vidéos)',
+                'attr'=>[
+                    'class'=>'form-control'
+                ],
+                'label_attr'=>[
+                    'class'=>'form-label pt-3'
+                ],
                 'mapped' => false,
                 'required' => false,
                 'constraints' => [
@@ -54,7 +73,7 @@ class AddMediaType extends AbstractType
             ->add('submit', SubmitType::class, [
                 'label'=>'Enregistrer le média',
                 'attr'=>[
-                    'class'=>'btn btn-outline-primary'
+                    'class'=>'btn btn-outline-primary mt-3'
                 ]
             ])
         ;

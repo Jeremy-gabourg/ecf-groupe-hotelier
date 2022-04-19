@@ -1,16 +1,38 @@
 {% extends 'base_front.html.twig' %}
 
-{% block title %}Hello ContactController!{% endblock %}
+{% block title %}Nous contacter{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
-
-<div class="example-wrapper">
-    <h1>Hello! ✅</h1>
-
-    {{form(contactForm)}}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12 col-lg-4 ps-0">
+            <img src="{{ asset("/ressources/uploads/contact_page/kirill-x-VOtnVJeGE-unsplash-625f10ba63fd3.jpg")}}"
+                 alt="Photo d\'une réception"
+                 class="img-fluid">
+        </div>
+        <div class="col-12 col-lg-4 align-self-center">
+            <h1 class="pt-5 text-center">Nous contacter</h1>
+            <div>
+                {{form(contactForm)}}
+            </div>
+        </div>
+        <aside class="col-12 col-lg-4 align-self-center ps-3 text-center">
+            <div>
+                <h4 class="pt-3 ">Par téléphone</h4>
+                <p class="mb-1">Notre service client est joignable du lundi au vendredi de 08H à 20H non-stop au :</p>
+                    <a href="tel:+331234567">(+33) 1 23 45 67</a>
+            </div>
+            <div>
+                <h4 class="pt-3">Par courrier</h4>
+                <p>Nous répondrons à tous les courriers qui nous parviennent à l'adresse suivante :</p>
+                <p>
+                    Hypnos<br>
+                    Service Client<br>
+                    35 rue du désir<br>
+                    75000 PARIS
+                </p>
+            </div>
+        </aside>
+    </div>
 </div>
 {% endblock %}

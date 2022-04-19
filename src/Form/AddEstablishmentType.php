@@ -21,16 +21,40 @@ class AddEstablishmentType extends AbstractType
     {
         $builder
             ->add('establishmentName', TextType::class, [
-                'label'=>'Nom'
+                'label'=>'Nom',
+                'attr'=>[
+                    'class'=>'form-control'
+                ],
+                'label_attr'=>[
+                    'class'=>'form-label pt-3'
+                ]
             ])
             ->add('address', TextType::class, [
-                'label'=>'Adresse'
+                'label'=>'Adresse',
+                'attr'=>[
+                    'class'=>'form-control'
+                ],
+                'label_attr'=>[
+                    'class'=>'form-label pt-3'
+                ]
             ])
             ->add('city', TextType::class, [
-                'label'=>'Ville'
+                'label'=>'Ville',
+                'attr'=>[
+                    'class'=>'form-control'
+                ],
+                'label_attr'=>[
+                    'class'=>'form-label pt-3'
+                ]
             ])
             ->add('description', TextareaType::class, [
-                'label'=>'Description'
+                'label'=>'Description',
+                'attr'=>[
+                    'class'=>'form-control'
+                ],
+                'label_attr'=>[
+                    'class'=>'form-label pt-3'
+                ]
             ])
             ->add('manager', EntityType::class, [
                 'label'=>'Manager',
@@ -42,12 +66,18 @@ class AddEstablishmentType extends AbstractType
                         ->orderBy('u.userName', 'ASC');
                 },
                 'choice_label'=>'userName',
-                'choice_value'=>'id'
+                'choice_value'=>'id',
+                'attr'=>[
+                    'class'=>'form-select'
+                ],
+                'label_attr'=>[
+                    'class'=>'form-label pt-3'
+                ]
             ])
             ->add('submit', SubmitType::class, [
                 'label'=>'Enregistrer l\'établissement',
                 'attr'=>[
-                    'class'=>'btn btn-outline-primary'
+                    'class'=>'btn btn-outline-primary mt-3'
                 ]
             ])
         ;

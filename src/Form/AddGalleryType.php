@@ -23,7 +23,13 @@ class AddGalleryType extends AbstractType
     {
         $builder
             ->add('galleryName', TextType::class, [
-                'label'=>'Nom'
+                'label'=>'Nom',
+                'attr'=>[
+                    'class'=>'form-control'
+                ],
+                'label_attr'=>[
+                    'class'=>'form-label pt-3'
+                ]
             ])
             ->add('establishment', EntityType::class, [
                 'label'=>'Etablissement associé',
@@ -31,6 +37,12 @@ class AddGalleryType extends AbstractType
                 'choice_label'=>'establishmentName',
                 'placeholder'=>'Aucun',
                 'choice_value'=>'id',
+                'attr'=>[
+                    'class'=>'form-select'
+                ],
+                'label_attr'=>[
+                    'class'=>'form-label pt-3'
+                ]
             ])
 //            ->add('suite', EntityType::class, [
 //                'label'=>'Suite associée ?',
@@ -47,6 +59,12 @@ class AddGalleryType extends AbstractType
             ->add('highlightedPhoto', FileType::class, [
                 'label'=>'Photo ou vidéo mise en avant',
                 'mapped'=>false,
+                'attr'=>[
+                    'class'=>'form-control'
+                ],
+                'label_attr'=>[
+                    'class'=>'form-label pt-3'
+                ],
                 'constraints' => [
                     new File([
                         'maxSize' => '40000k',
@@ -65,6 +83,12 @@ class AddGalleryType extends AbstractType
                 'label'=>'Gallerie de photos/vidéos',
                 'multiple'=>true,
                 'mapped'=>false,
+                'attr'=>[
+                    'class'=>'form-control'
+                ],
+                'label_attr'=>[
+                    'class'=>'form-label pt-3'
+                ],
                 'constraints' => [
                     new All([
                         new File([
@@ -84,7 +108,7 @@ class AddGalleryType extends AbstractType
         ->add('submit', SubmitType::class, [
                 'label'=>'Enregistrer la gallerie',
                 'attr'=>[
-                    'class'=>'btn btn-outline-primary'
+                    'class'=>'btn btn-outline-primary mt-3'
                 ]
             ]);
     }

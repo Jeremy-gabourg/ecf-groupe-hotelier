@@ -18,28 +18,61 @@ class ContactFormType extends AbstractType
         $builder
             ->add('firstName', TextType::class, [
                 'label'=>'Prénom',
+                'attr'=>[
+                    'class'=>'form-control'
+                ],
+                'label_attr'=>[
+                    'class'=>'form-label pt-3'
+                ]
             ])
             ->add('lastName', TextType::class, [
                 'label'=>'Nom',
+                'attr'=>[
+                    'class'=>'form-control'
+                ],
+                'label_attr'=>[
+                    'class'=>'form-label pt-3'
+                ]
             ])
             ->add('email', EmailType::class, [
-                'label'=>'Email'
+                'label'=>'Email',
+                'attr'=>[
+                    'class'=>'form-control'
+                ],
+                'label_attr'=>[
+                    'class'=>'form-label pt-3'
+                ]
             ])
             ->add('subject', ChoiceType::class, [
                 'label'=>'Sujet',
+                'attr'=>[
+                    'class'=>'form-select',
+                ],
+                'label_attr'=>[
+                    'class'=>'form-label pt-3'
+                ],
                 'placeholder'=>'Choisissez un sujet',
                 'choices'=>[
-                    'Je souhaite poser une réclamation',
-                    'Je souhaite commander un service supplémentaire',
-                    'Je souhaite en savoir plus sur une suite',
-                    'J\'ai un souci avec cette application',
+                    'Je souhaite poser une réclamation'=>'Je souhaite poser une réclamation',
+                    'Je souhaite commander un service supplémentaire'=>'Je souhaite commander un service supplémentaire',
+                    'Je souhaite en savoir plus sur une suite'=>'Je souhaite en savoir plus sur une suite',
+                    'J\'ai un souci avec cette application'=>'J\'ai un souci avec cette application',
                 ]
             ])
             ->add('message', TextareaType::class, [
-                'label'=>'Mon message'
+                'label'=>'Mon message',
+                'attr'=>[
+                    'class'=>'form-control'
+                ],
+                'label_attr'=>[
+                    'class'=>'form-label pt-3'
+                ]
             ])
             ->add('submit', SubmitType::class, [
-                'label'=>'Envoyer le message'
+                'label'=>'Envoyer le message',
+                'attr'=>[
+                    'class'=>'btn btn-outline-primary mt-3',
+                ]
             ])
         ;
     }
