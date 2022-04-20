@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\TemporarySearch;
-use App\Form\ReservationFormTypee;
+use App\Form\ReservationFormType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;

@@ -2,6 +2,7 @@
 
 namespace App\Form;
 
+use App\Entity\TemporarySearch;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
@@ -26,10 +27,11 @@ class SearchDisplayType extends AbstractType
             ->add('establishment', EntityType::class, [
                 'label'=>'Hôtel',
                 'class'=>Establishment::class,
+                'mapped'=>false,
                 'choice_label'=>function($establishment){
                     return $establishment->getEstablishmentName(). ' à '.$establishment->getCity();
                 },
-                'choice_value'=>'id'
+                'choice_value'=>'id',
             ])
             ->add('submit', SubmitType::class, [
                 'label'=>'Rechercher',
@@ -43,7 +45,7 @@ class SearchDisplayType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            // Configure your form options here
+            'data_class'=>TemporarySearch::class,
         ]);
     }
 }

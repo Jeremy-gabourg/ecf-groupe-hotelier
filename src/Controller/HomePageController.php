@@ -26,14 +26,16 @@ class HomePageController extends AbstractController
 
             $arrivalDate = $search['arrivalDate'];
             $departureDate = $search['departureDate'];
-            $establishmentId = $search['establishment'];
+            $establishment = $search['establishment'];
+            $establishmentId = $establishment->getId();
 
             $tempSearch->setArrivalDate($arrivalDate);
             $tempSearch->setDepartureDate($departureDate);
-            $tempSearch->setEstablishmentId($establishmentId);
+            $tempSearch->setEstablishmentId($establishment);
 
-            $entityManager->persist();
+            $entityManager->persist($tempSearch);
             $entityManager->flush();
+
 
             return $this->redirectToRoute('establishment_homepage', [
                 'id'=>$establishmentId,

@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\TemporarySearchRepository;
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: TemporarySearchRepository::class)]
@@ -17,6 +18,10 @@ class TemporarySearch
     private $arrivalDate;
 
     #[ORM\Column(type: 'date')]
+    /**
+     * @Assert\GreaterThan(propertyPath="arrivalDate")
+     * message = "La date de départ doit être plus loin que la date d'arrivée"
+     */
     private $departureDate;
 
     #[ORM\ManyToOne(targetEntity: Establishment::class, inversedBy: 'temporarySearches')]
