@@ -62,6 +62,11 @@ class Establishment
         return $this;
     }
 
+    public function __toString()
+    {
+        return $this->establishmentName;
+    }
+
     public function getCity(): ?string
     {
         return $this->city;

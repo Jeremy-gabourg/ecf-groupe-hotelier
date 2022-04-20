@@ -17,8 +17,8 @@ class Gallery
     #[ORM\Column(type: 'string', length: 255)]
     private $galleryName;
 
-    #[ORM\Column(type: 'boolean')]
-    private $highlightedPhoto;
+    #[ORM\Column(type: 'string', length: 255)]
+    private $highlightedPhotoName;
 
     #[ORM\OneToOne(inversedBy: 'gallery', targetEntity: Suite::class, cascade: ['persist', 'remove'])]
     #[ORM\JoinColumn(nullable: true)]
@@ -47,14 +47,14 @@ class Gallery
         return $this;
     }
 
-    public function getHighlightedPhoto(): ?bool
+    public function getHighlightedPhotoName(): ?string
     {
-        return $this->highlightedPhoto;
+        return $this->highlightedPhotoName;
     }
 
-    public function setHighlightedPhoto(bool $highlightedPhoto): self
+    public function setHighlightedPhotoName(string $highlightedPhotoName): self
     {
-        $this->highlightedPhoto = $highlightedPhoto;
+        $this->highlightedPhotoName = $highlightedPhotoName;
 
         return $this;
     }

@@ -9,29 +9,9 @@
 {% block body %}
 
 <div class="text-center pb-4">
-    <h1>Hello ! ✅</h1>
+    <h1>Ajouter une gallerie</h1>
 </div>
     <div>
-        {{ form_start(addGalleryForm) }}
-        <div>
-            {{ form_errors(addGalleryForm) }}
-        </div>
-
-        <div class="row">
-            <div class="col">
-                {{ form_row(addGalleryForm.galleryName) }}
-            </div>
-            <div class="col">
-                {{ form_row(addGalleryForm.establishment) }}
-            </div>
-            <div class="col">
-                {{ form_row(addGalleryForm.highlightedPhoto) }}
-            </div>
-            <div class="col">
-                {{ form_row(addGalleryForm.photos) }}
-            </div>
-        </div>
-        {{ form_row(addGalleryForm.submit)}}
-        {{ form_end(addGalleryForm) }}
+        {{ form(addGalleryForm) }}
     </div>
 {% endblock %}

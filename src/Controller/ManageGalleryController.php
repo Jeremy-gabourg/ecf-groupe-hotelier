@@ -28,16 +28,17 @@ class ManageGalleryController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()){
 
             $data = $form->getData();
+
             $establishment = $data['establishment'];
             $suite = $data['suite'];
 
             if($suite!==null){
-                $path = $this->getParameter('media_directory').'/'.$establishment.'/'.$suite;
+                $path = $this->getParameter('media_directory').'/establishments_pages/'.$establishment.'/'.$suite;
             } else {
-                $path = $this->getParameter('media_directory').'/'.$establishment;
+                $path = $this->getParameter('media_directory').'/establishments_pages/'.$establishment;
             }
 
-            $highlightedPhoto = $data['highlightedPhoto'];
+            $highlightedPhoto = $form->get('highlightedPhoto')->getData();
             $extension = $highlightedPhoto->guessExtension();
 
             if (!$extension) {
@@ -46,14 +47,14 @@ class ManageGalleryController extends AbstractController
             if ($highlightedPhoto) {
                 $originalFilename = pathinfo($highlightedPhoto->getClientOriginalName(), PATHINFO_FILENAME);
                 $safeFilename = $slugger->slug($originalFilename);
-                $newFilename = $safeFilename . '-' . uniqid() . '.' . $extension;
+                $newFilename = 'HM_' . $safeFilename . '-' . uniqid() . '.' . $extension;
             }
             try {$highlightedPhoto->move($path, $newFilename);}
             catch (FileException $e) {
                 echo 'Une erreur est survenue :'.$e->getMessage();
             }
 
-            $files = $data['photos'];
+            $files = $form->get('photos')->getData();
 
             foreach ($files as $file){
                 $photoExtension = $file->guessExtension();
@@ -71,20 +72,25 @@ class ManageGalleryController extends AbstractController
                 }
             }
 
-            $gallery->setEstablishmentId($establishment->getId());
+            $gallery->setEstablishmentId($establishment);
             if($suite!==null){
                 $gallery->setSuiteId($suite->getId());
             }
 
-            $name = $data['galleryName'];
+            if($suite!==null){
+                $name = 'Gallerie de la '.$suite->getTitle().' de '.$establishment->getEstablishmentName();
+            } else {
+                $name = 'Gallerie de '.$establishment->getEstablishmentName();
+            }
             $gallery->setGalleryName($name);
 
             $gallery->setPath($path);
+            $gallery->setHighlightedPhotoName($newFilename);
 
             $entityManager->persist($gallery);
             $entityManager->flush();
 
-            return $this->redirectToRoute('home_page');
+            return $this->redirectToRoute('app_manage_gallery');
         }
 
         return $this->renderForm('manage_gallery/add_gallery.html.twig', [

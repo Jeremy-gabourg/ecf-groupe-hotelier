@@ -3,10 +3,12 @@
 namespace App\Form;
 
 use App\Entity\Establishment;
+use App\Entity\Gallery;
 use App\Entity\Suite;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -22,40 +24,33 @@ class AddGalleryType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('galleryName', TextType::class, [
-                'label'=>'Nom',
-                'attr'=>[
-                    'class'=>'form-control'
-                ],
-                'label_attr'=>[
-                    'class'=>'form-label pt-3'
-                ]
-            ])
-            ->add('establishment', EntityType::class, [
-                'label'=>'Etablissement associé',
-                'class'=>Establishment::class,
-                'choice_label'=>'establishmentName',
-                'placeholder'=>'Aucun',
-                'choice_value'=>'id',
+                ->add('establishment', EntityType::class, [
+                    'label'=>'Etablissement associé',
+                    'class'=>Establishment::class,
+                    'choice_label'=>'establishmentName',
+                    'choice_value'=>'id',
+                    'attr'=>[
+                        'class'=>'form-select'
+                    ],
+                    'label_attr'=>[
+                        'class'=>'form-label pt-3'
+                    ]
+                ])
+            ->add('suite', EntityType::class, [
+                'label'=>'Suite associée ?',
+                'required'=>false,
+                'placeholder'=>'Si laissé vide, la gallerie sera rattachée à la page établissement',
+                'class'=>Suite::class,
+                'choice_label'=>function($suite){
+                    return $suite->getTitle().' de '.$suite->getEstablishmentId();
+                },
                 'attr'=>[
                     'class'=>'form-select'
                 ],
                 'label_attr'=>[
                     'class'=>'form-label pt-3'
                 ]
-            ])
-//            ->add('suite', EntityType::class, [
-//                'label'=>'Suite associée ?',
-//                'required'=>false,
-//                'placeholder'=>'Si laissé vide, la gallerie sera rattachée à la page établissement',
-//                'class'=>Suite::class,
-//                'query_builder'=>function(EntityRepository $er, $establishmentId){
-//                    return $er->createQueryBuilder('s')
-//                        ->where('s.establishementId = :val')
-//                        ->setParameter('val', $establishmentId)
-//                        ->orderBy('s.title', 'ASC');
-//                    },
-//                ])
+                ])
             ->add('highlightedPhoto', FileType::class, [
                 'label'=>'Photo ou vidéo mise en avant',
                 'mapped'=>false,
@@ -113,11 +108,10 @@ class AddGalleryType extends AbstractType
             ]);
     }
 
-
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            // Configure your form options here
+            'compound'=>true,
         ]);
     }
 }

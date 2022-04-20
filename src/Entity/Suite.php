@@ -59,6 +59,11 @@ class Suite
         return $this;
     }
 
+    public function __toString()
+    {
+        return $this->title;
+    }
+
     public function getPrice(): ?float
     {
         return $this->price;

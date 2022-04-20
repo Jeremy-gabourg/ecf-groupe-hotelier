@@ -3,19 +3,30 @@
 {% block title %}Création de compte{% endblock %}
 
 {% block body %}
+<div class="container-fluid">
     <h1>Création de compte</h1>
-<div>
-    {{ form_start(registrationForm) }}
     <div>
-        {{ form_row(registrationForm.email) }}
+        {{ form_start(registrationForm) }}
+        <div>
+            {{ form_row(registrationForm.firstName) }}
+        </div>
+        <div>
+            {{ form_row(registrationForm.lastName) }}
+        </div>
+        <div>
+            {{ form_row(registrationForm.email) }}
+        </div>
+        <div>
+            {{ form_row(registrationForm.plainPassword) }}
+        </div>
+        <div class="d-grid mx-auto col col-md-6 col-lg-4">
+            <button class="btn btn-lg btn-primary mt-3" type="submit">
+                S'enregistrer
+            </button>
+        </div>
     </div>
-    <div>
-        {{ form_row(registrationForm.plainPassword) }}
-    </div>
-    <div>
-        {{form_row(registrationForm.submit)}}
-    </div>
-</div>
 
     {{ form_end(registrationForm) }}
+
+</div>
 {% endblock %}
