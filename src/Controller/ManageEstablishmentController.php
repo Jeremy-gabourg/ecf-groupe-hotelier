@@ -56,7 +56,12 @@ class ManageEstablishmentController extends AbstractController
     public function listEstablishment(Request $request, EstablishmentRepository $establishmentRepository, SuiteRepository $suiteRepository) : Response
     {
         $establishments = $establishmentRepository->findAll();
-        $suites = $suiteRepository->findAll();
+
+        foreach ($establishments as $establishment){
+            $establishmentId = $establishment->getId();
+        }
+
+        $suites = $suiteRepository->findByEstablishmentId($establishmentId);
 
 //        foreach ($establishments as $establishment){
 //            $establishmentName = $establishment->getEstablishmentName();

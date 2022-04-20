@@ -45,22 +45,20 @@ class SuiteRepository extends ServiceEntityRepository
         }
     }
 
-    // /**
-    //  * @return Suite[] Returns an array of Suite objects
-    //  */
-    /*
-    public function findByExampleField($value)
+     /**
+      * @return Suite[] Returns an array of Suite objects
+      */
+
+    public function findByEstablishmentId($value)
     {
         return $this->createQueryBuilder('s')
-            ->andWhere('s.exampleField = :val')
+            ->andWhere('s.establishmentId = :val')
             ->setParameter('val', $value)
             ->orderBy('s.id', 'ASC')
-            ->setMaxResults(10)
             ->getQuery()
             ->getResult()
         ;
     }
-    */
 
     /*
     public function findOneBySomeField($value): ?Suite
