@@ -19,19 +19,27 @@ class SearchDisplayType extends AbstractType
             ->add('arrivalDate', DateType::class,[
                 'label'=>'Arrivée',
                 'widget'=>'single_text',
+                'label_attr'=>[
+                    'class'=>'pt-1'
+                ],
             ])
             ->add('departureDate', DateType::class,[
                 'label'=>'Départ',
                 'widget'=>'single_text',
+                'label_attr'=>[
+                    'class'=>'pt-1'
+                ],
             ])
             ->add('establishment', EntityType::class, [
                 'label'=>'Hôtel',
                 'class'=>Establishment::class,
                 'mapped'=>false,
                 'choice_label'=>function($establishment){
-                    return $establishment->getEstablishmentName(). ' à '.$establishment->getCity();
+                    return $establishment->getEstablishmentName().' à '.$establishment->getCity();
                 },
-                'choice_value'=>'id',
+                'label_attr'=>[
+                    'class'=>'pt-1'
+                ],
             ])
             ->add('submit', SubmitType::class, [
                 'label'=>'Rechercher',
@@ -45,7 +53,7 @@ class SearchDisplayType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class'=>TemporarySearch::class,
+//            'data_class'=>TemporarySearch::class,
         ]);
     }
 }

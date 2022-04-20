@@ -26,9 +26,8 @@ class HomePageController extends AbstractController
 
             $arrivalDate = $search['arrivalDate'];
             $departureDate = $search['departureDate'];
-            $establishment = $search['establishment'];
+            $establishment = $form->get('establishment')->getData();
             $establishmentId = $establishment->getId();
-
             $tempSearch->setArrivalDate($arrivalDate);
             $tempSearch->setDepartureDate($departureDate);
             $tempSearch->setEstablishmentId($establishment);
