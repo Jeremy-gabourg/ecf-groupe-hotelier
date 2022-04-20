@@ -45,6 +45,8 @@ class AddMediaType extends AbstractType
                 ],
                 'class'=>Gallery::class,
                 'choice_label'=>'galleryName',
+                'placeholder'=>'Aucune',
+                'required'=>false,
             ])
             ->add('file', FileType::class, [
                 'label' => 'Media (Images ou vidéos)',

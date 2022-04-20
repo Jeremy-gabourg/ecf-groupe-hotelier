@@ -66,7 +66,7 @@ class ManageMediaController extends AbstractController
                 echo 'Une erreur est survenue :'.$e->getMessage();
             }
 
-            return $this->redirectToRoute('home_page');
+            return $this->redirectToRoute('media_add');
         }
 
         return $this->renderForm('manage_media/add_media.html.twig', [
