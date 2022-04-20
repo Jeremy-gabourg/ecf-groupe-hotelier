@@ -74,7 +74,7 @@ class ManageGalleryController extends AbstractController
 
             $gallery->setEstablishmentId($establishment);
             if($suite!==null){
-                $gallery->setSuiteId($suite->getId());
+                $gallery->setSuiteId($suite);
             }
 
             if($suite!==null){

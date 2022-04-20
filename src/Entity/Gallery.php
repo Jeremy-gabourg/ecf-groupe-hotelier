@@ -24,7 +24,7 @@ class Gallery
     #[ORM\JoinColumn(nullable: true)]
     private $suiteId;
 
-    #[ORM\OneToOne(inversedBy: 'gallery', targetEntity: Establishment::class, cascade: ['persist', 'remove'])]
+    #[ORM\ManyToOne(inversedBy: 'gallery', targetEntity: Establishment::class)]
     private $establishmentId;
 
     #[ORM\Column(type: 'string', length: 255)]

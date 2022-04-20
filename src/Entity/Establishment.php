@@ -36,7 +36,7 @@ class Establishment
     #[ORM\OneToMany(mappedBy: 'establishmentId', targetEntity: TemporarySearch::class)]
     private $temporarySearches;
 
-    #[ORM\OneToOne(mappedBy: 'establishmentId', targetEntity: Gallery::class, cascade: ['persist', 'remove'])]
+    #[ORM\OneToMany(mappedBy: 'establishmentId', targetEntity: Gallery::class)]
     private $gallery;
 
     public function __construct()
@@ -174,25 +174,32 @@ class Establishment
 
         return $this;
     }
-
-    public function getGallery(): ?Gallery
+    /**
+     * @return Collection<int, ContactMessage>
+     */
+    public function getGallery(): Collection
     {
         return $this->gallery;
     }
 
-    public function setGallery(?Gallery $gallery): self
+    public function addGallery(Gallery $gallery): self
     {
-        // unset the owning side of the relation if necessary
-        if ($gallery === null && $this->gallery !== null) {
-            $this->gallery->setEstablishmentId(null);
-        }
-
-        // set the owning side of the relation if necessary
-        if ($gallery !== null && $gallery->getEstablishmentId() !== $this) {
+        if (!$this->gallery->contains($gallery)) {
+            $this->gallery[] = $gallery;
             $gallery->setEstablishmentId($this);
         }
 
-        $this->gallery = $gallery;
+        return $this;
+    }
+
+    public function removeGallery(Gallery $gallery): self
+    {
+        if ($this->gallery->removeElement($gallery)) {
+            // set the owning side to null (unless already changed)
+            if ($gallery->getEstablishmentId() === $this) {
+                $gallery->setEstablishmentId(null);
+            }
+        }
 
         return $this;
     }

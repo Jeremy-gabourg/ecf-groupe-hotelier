@@ -35,7 +35,9 @@ class HomePageController extends AbstractController
             $entityManager->persist();
             $entityManager->flush();
 
-            return $this->redirectToRoute('establishment_homepage');
+            return $this->redirectToRoute('establishment_homepage', [
+                'id'=>$establishmentId,
+            ]);
         }
         return $this->renderForm('home_page/index.html.twig', [
             'form' => $form,

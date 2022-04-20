@@ -26,6 +26,8 @@ class RegistrationController extends AbstractController
         $form->handleRequest($request);
 
         $entityManager = $doctrine->getManager();
+        $defaultRole = $roleRepository->find(3);
+
         $user = new User();
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -36,7 +38,6 @@ class RegistrationController extends AbstractController
                 $user,
                 $plainPassword
             );
-            // encode the plain password
             $user->setPassword($hashedPassword);
 
             $user->setEmail($data['email']);
@@ -46,7 +47,6 @@ class RegistrationController extends AbstractController
             $user->setLastName($lastName);
             $user->setUserName($firstName, $lastName);
 
-            $defaultRole = $roleRepository->find(3);
             $user->setRoleId($defaultRole);
 
             $entityManager->persist($user);
