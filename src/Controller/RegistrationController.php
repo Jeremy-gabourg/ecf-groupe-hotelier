@@ -6,6 +6,7 @@ use App\Entity\User;
 use App\Repository\RoleRepository;
 use App\Form\RegistrationFormType;
 use App\Security\LoginFormAuthenticator;
+use Doctrine\Persistence\ManagerRegistry;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -18,27 +19,35 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 class RegistrationController extends AbstractController
 {
     #[Route('/register', name: 'app_register')]
-    public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, UserAuthenticatorInterface $userAuthenticator, LoginFormAuthenticator $authenticator, EntityManagerInterface $entityManager, RoleRepository $roleRepository): Response
+    public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, UserAuthenticatorInterface $userAuthenticator, LoginFormAuthenticator $authenticator, ManagerRegistry $doctrine, RoleRepository $roleRepository): Response
     {
-        $user = new User();
-        $form = $this->createForm(RegistrationFormType::class, $user);
+
+        $form = $this->createForm(RegistrationFormType::class);
         $form->handleRequest($request);
 
+        $entityManager = $doctrine->getManager();
+        $user = new User();
+
         if ($form->isSubmitted() && $form->isValid()) {
-            // encode the plain password
-            $user->setPassword(
-            $userPasswordHasher->hashPassword(
-                    $user,
-                    $form->get('plainPassword')->getData()
-                )
+            $data = $form->getData();
+
+            $plainPassword = $data['plainPassword'];
+            $hashedPassword = $userPasswordHasher->hashPassword(
+                $user,
+                $plainPassword
             );
-            $user->setEmail($form->get('email')->getData());
-            $firstName = $form->get('firstName')->getData();
-            $lastName = $form->get('lastName')->getData();
+            // encode the plain password
+            $user->setPassword($hashedPassword);
+
+            $user->setEmail($data['email']);
+            $firstName = $data['firstName'];
+            $lastName = $data['lastName'];
             $user->setFirstName($firstName);
             $user->setLastName($lastName);
             $user->setUserName($firstName, $lastName);
-            $user->setRoleId($roleRepository->find(3));
+
+            $defaultRole = $roleRepository->find(3);
+            $user->setRoleId($defaultRole);
 
             $entityManager->persist($user);
             $entityManager->flush();
