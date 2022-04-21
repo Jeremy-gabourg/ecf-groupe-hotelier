@@ -61,7 +61,10 @@ Lier/créer un remote Heroku :
 ```bash
   heroku git:remote -a example-app
 ```
-
+Configurer Heroku avec une variable de production
+```bash
+heroku config:set APP_ENV=PRODUCTION
+```
 - Installer l'add-on JawsDB MySQL sur Heroku
 - Récupérer les informations de connexion de la base de donnée dans le dashboard de JawsDB
 - Envoyer la sauvegarde de la base de données du projet (nommée 'backup.sql' dans le dossier) vers la base Heroku en ligne liée au remote
