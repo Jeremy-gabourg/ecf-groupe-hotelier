@@ -22,6 +22,7 @@ Encore
      */
     .addEntry('app', './assets/app.js')
     .addEntry('checkDisplay', '/assets/js/checkDisplay.js')
+    .addEntry('checkPassword', '/assets/js/checkPassword')
 
     // enables the Symfony UX Stimulus bridge (used in assets/bootstrap.js)
     .enableStimulusBridge('./assets/controllers.json')

@@ -2,6 +2,11 @@
 
 {% block title %}Création de compte{% endblock %}
 
+{% block javascripts %}
+    {{ parent ()}}
+    {{ encore_entry_script_tags('checkPassword') }}
+{% endblock %}
+
 {% block body %}
 <div class="container-fluid">
     <h1>Création de compte</h1>
@@ -19,7 +24,11 @@
         <div>
             {{ form_row(registrationForm.plainPassword) }}
         </div>
-        <div class="d-grid mx-auto col col-md-6 col-lg-4">
+        <div class="col">
+            <label for="verifpass" class="form-label mt-3">Saisir une seconde fois le mot de passe</label>
+            <input type="password" id="verifpass" required class="form-control">
+        </div>
+        <div class="d-grid mx-auto col col-md-6 col-lg-4 mt-3">
             <button class="btn btn-lg btn-primary mt-3" type="submit">
                 S'enregistrer
             </button>

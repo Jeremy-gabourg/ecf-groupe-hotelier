@@ -54,7 +54,8 @@ class RegistrationFormType extends AbstractType
                 ],
                 'label'=>'Mot de passe',
                 'attr' => [
-                    'class'=>'form-control'
+                    'class'=>'form-control',
+                    'id'=>'password',
                     ],
                 'constraints' => [
                     new NotBlank([
