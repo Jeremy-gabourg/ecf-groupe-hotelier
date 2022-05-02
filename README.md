@@ -95,12 +95,15 @@ Configurer les variables d'environnement en production
 ```bash
   export APP_ENV=prod
 ```
-
+Mettre la variable APP_SECRET d'Heroku à jour avec celle indiquée dans le fichier .env.local.php fraichement créé
+```bash
+  heroku config:set APP_SECRET=coller_la_valeur_de_variable
+```
 Mettre à jour la liste des dépendances en supprimant celles qui sont dédiées à l'enviromment de développement
 ```bash
   composer install --no-dev --optimize-autoloader
 ```
-- Mettre à jour le fichier .env.local.php fraichement créé avec les informations de la base de données ('connection string' dans le dashboard de JawsDB)
+- Mettre à jour le fichier .env.local.php avec les informations de la base de données ('connection string' dans le dashboard de JawsDB)
 
 Vider le cache symfony
 ```bash
@@ -116,7 +119,7 @@ heroku buildpacks
 ```
 Si PHP n'apparait pas dans la liste obtenue, ajouter la prise en compte de PHP également
 ```bash
-heroku buildpacks:set heroku/php
+heroku buildpacks:set heroku/php --index 1
 ```
 Pousser le code sur le remote Heroku
 ```bash
