@@ -18,7 +18,22 @@ Rentrer dans le dossier fraichement téléchargé
 ```bash
   cd symfony_groupe_hotelier
 ```
-
+Rentrer dans Mysql en local
+```bash
+  mysql -uroot -p
+```
+Créer une base de données vierge avec le nom déjà utilisé dans le fichier .env
+```bash
+  CREATE DATABASE symfony_groupe_hotelier
+```
+Quitter Mysql
+```bash
+  quit
+```
+Restaurer la sauvegarde de base de données
+```bash
+  mysql -uroot -p symfony_groupe_hotelier < backup.sql
+```
 Installer les dépendances npm
 
 ```bash
@@ -38,6 +53,7 @@ Générer les fichiers CSS et Javascipt avec webpack
 - Démarrez le serveur Apache avec XAMPP, WAMPP ou tout autre distributeur Apache.
 
 - Rendez vous sur la page web associé à votre serveur local (localhost par exemple).
+
 **_Le site est servi en local!_**
 
 
@@ -67,7 +83,8 @@ heroku config:set APP_ENV=PRODUCTION
 ```
 - Installer l'add-on JawsDB MySQL sur Heroku
 - Récupérer les informations de connexion de la base de donnée dans le dashboard de JawsDB
-- Envoyer la sauvegarde de la base de données du projet (nommée 'backup.sql' dans le dossier) vers la base Heroku en ligne liée au remote
+
+Envoyer la sauvegarde de la base de données du projet (nommée 'backup.sql' dans le dossier) vers la base Heroku en ligne liée au remote
 ```bash
 mysql -h NEWHOST -u NEWUSER -pNEWPASS NEWDATABASE < backup.sql
 ```
@@ -75,14 +92,23 @@ Configurer les variables d'environnement en production
 ```bash
   composer dump-env prod
 ```
-Mettre à jour le fichier .env.local.php fraichement créé avec les informations de la base de données ('connection string' dans le dashboard de JawsDB)
+```bash
+  export APP_ENV=prod
+```
+
+Mettre à jour la liste des dépendances en supprimant celles qui sont dédiées à l'enviromment de développement
+```bash
+  composer install --no-dev --optimize-autoloader
+```
+- Mettre à jour le fichier .env.local.php fraichement créé avec les informations de la base de données ('connection string' dans le dashboard de JawsDB)
+
 Vider le cache symfony
 ```bash
 APP_ENV=prod APP_DEBUG=0 php bin/console cache:clear
 ```
 Installer le buildpack NodeJs d'Heroku pour la génération des fichiers avec webpack
 ```bash
-heroku create --buildpack https://github.com/heroku/heroku-buildpack-nodejs.git
+heroku buildpacks:set heroku/nodejs
 ```
 Pousser le code sur le remote Heroku
 ```bash
