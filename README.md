@@ -108,11 +108,15 @@ APP_ENV=prod APP_DEBUG=0 php bin/console cache:clear
 ```
 Installer le buildpack NodeJs d'Heroku pour la génération des fichiers avec webpack
 ```bash
-heroku buildpacks:set heroku/nodejs
+heroku buildpacks:set heroku/nodejs --index 2
 ```
-Ajouter la prise en compte de PHP également
+Vérifier que le buildpack s'est bien ajouté à celui de PHP
 ```bash
-heroku buildpacks:set heroku/php --index 2
+heroku buildpacks
+```
+Si PHP n'apparait pas dans la liste obtenue, ajouter la prise en compte de PHP également
+```bash
+heroku buildpacks:set heroku/php
 ```
 Pousser le code sur le remote Heroku
 ```bash
