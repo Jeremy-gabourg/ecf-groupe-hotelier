@@ -79,7 +79,7 @@ Lier/créer un remote Heroku :
 ```
 Configurer Heroku avec une variable de production
 ```bash
-heroku config:set APP_ENV=PRODUCTION
+heroku config:set SYMFONY_ENV=prod
 ```
 - Installer l'add-on JawsDB MySQL sur Heroku
 - Récupérer les informations de connexion de la base de donnée dans le dashboard de JawsDB
@@ -109,6 +109,10 @@ APP_ENV=prod APP_DEBUG=0 php bin/console cache:clear
 Installer le buildpack NodeJs d'Heroku pour la génération des fichiers avec webpack
 ```bash
 heroku buildpacks:set heroku/nodejs
+```
+Ajouter la prise en compte de PHP également
+```bash
+heroku buildpacks:set heroku/php --index 2
 ```
 Pousser le code sur le remote Heroku
 ```bash
