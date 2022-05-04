@@ -53,9 +53,21 @@
                         <div class="d-flex me-4">
                             <a href="/reservation" class="btn btn-outline-primary">Réserver</a>
                         </div>
-                        <a href="/login" class="d-flex me-2">
-                            <img src="{{ asset("ressources/user-solid.svg") }}" class="icon" alt="connexion_icon">
-                        </a>
+                        {% if app.user %}
+                            <div class="d-inline-flex me-2">
+                                <a href="/login" >
+                                    <div class="d-inline-block"><img src="{{ asset("ressources/user-solid.svg") }}" class="icon" alt="connexion_icon"></div>
+                                    <div class="text-primary d-inline-block">Bienvenu {{ app.user.username }}</div>
+                                </a>
+                            </div>
+                        {% else %}
+                            <div class="d-inline-flex me-2">
+                                <a href="/login" >
+                                    <div class="d-inline-block"><img src="{{ asset("ressources/user-solid.svg") }}" class="icon" alt="connexion_icon"></div>
+                                    <div class="text-primary d-inline-block">Connexion</div>
+                                </a>
+                            </div>
+                        {% endif %}
                     </div>
                 </div>
             </nav>

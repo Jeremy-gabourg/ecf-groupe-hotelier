@@ -28,6 +28,7 @@ class EstablishmentController extends AbstractController
         $establishmentName = $establishment->getEstablishmentName();
 
         $establishmentDirectory = $this->getParameter('media_directory').'/establishments_pages/'.$establishmentName;
+        $establishmentDirectoryForImg = '/ressources/uploads/establishments_pages/'.$establishmentName;
 
         $pattern = '/^[^HM]/';
         $photos = [];
@@ -44,15 +45,15 @@ class EstablishmentController extends AbstractController
                     && $value !== 'Suite standard'
                     && $value !== 'Suite VIP'){
                         if ($count === 0) {
-                            $button = '<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide '.$count1.'"></button>';
-                            $photo = '<div class="carousel-item active"><img src="'.$establishmentDirectory.'/'.$value.'" class="d-block w-100" alt="Photo de l\'hotel"></div>';
+                            $button = '<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide '. $count1 .'"></button>';
+                            $photo = '<div class="carousel-item active"><img src="{{ asset("'.$establishmentDirectoryForImg.'/'.$value.'")}}" class="d-block w-100" alt="Photo de l\'hotel"></div>';
                             array_push($buttons, $button);
                             array_push($photos, $photo);
                             $count++;
                             $count1++;
                         } else {
-                            $button = '<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="'.$count.'" aria-label="Slide'.$count1.'"></button>';
-                            $photo = '<div class="carousel-item"><img src="'.$establishmentDirectory.'/'.$value.'" class="d-block w-100" alt="Photo de l\'hotel"></div>' ;
+                            $button = '<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="'.$count.'" aria-label=" Slide '. $count1 .'"></button>';
+                            $photo = '<div class="carousel-item"><img src="{{ asset("'.$establishmentDirectoryForImg.'/'.$value.'")}}" class="d-block w-100" alt="Photo de l\'hotel"></div>';
                             array_push($buttons, $button);
                             array_push($photos, $photo);
                             $count++;
@@ -61,16 +62,14 @@ class EstablishmentController extends AbstractController
                 }
             }
         } else {echo 'Le dossier n\'existe pas.';}
-        dump($buttons);
-        dump($photos);
 
         return $this->render('establishment/establishment.html.twig', [
             'id' => $id,
             'establishment'=>$establishment,
             'establishmentName'=>$establishmentName,
             'establishmentDirectory'=>$establishmentDirectory,
+            'buttons'=>$buttons,
             'photos'=>$photos,
-            'button'=>$buttons,
         ]);
     }
 }
