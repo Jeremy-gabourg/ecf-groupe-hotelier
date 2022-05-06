@@ -28,9 +28,8 @@ class EstablishmentController extends AbstractController
         $establishmentName = $establishment->getEstablishmentName();
 
         $establishmentDirectory = $this->getParameter('media_directory').'/establishments_pages/'.$establishmentName;
-        $establishmentDirectoryForImg = '/ressources/uploads/establishments_pages/'.$establishmentName;
+        $establishmentAssetDir = '%2ressources%2uploads%2establishments_pages%2'.$establishmentName;
 
-        $pattern = '/^[^HM]/';
         $photos = [];
         $buttons = [];
         $count = 0;
@@ -46,14 +45,14 @@ class EstablishmentController extends AbstractController
                     && $value !== 'Suite VIP'){
                         if ($count === 0) {
                             $button = '<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide '. $count1 .'"></button>';
-                            $photo = '<div class="carousel-item active"><img src="{{ asset("'.$establishmentDirectoryForImg.'/'.$value.'")}}" class="d-block w-100" alt="Photo de l\'hotel"></div>';
+                            $photo = '<div class="carousel-item active"><img src="{{ asset("'.$establishmentAssetDir.'%2'.$value.'")}}" class="d-block w-100" alt="Photo de l\'hotel"></div>';
                             array_push($buttons, $button);
                             array_push($photos, $photo);
                             $count++;
                             $count1++;
                         } else {
                             $button = '<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="'.$count.'" aria-label=" Slide '. $count1 .'"></button>';
-                            $photo = '<div class="carousel-item"><img src="{{ asset("'.$establishmentDirectoryForImg.'/'.$value.'")}}" class="d-block w-100" alt="Photo de l\'hotel"></div>';
+                            $photo = '<div class="carousel-item"><img src="{{ asset("'.$establishmentAssetDir.'%2'.$value.'")}}" class="d-block w-100" alt="Photo de l\'hotel"></div>';
                             array_push($buttons, $button);
                             array_push($photos, $photo);
                             $count++;
@@ -62,6 +61,8 @@ class EstablishmentController extends AbstractController
                 }
             }
         } else {echo 'Le dossier n\'existe pas.';}
+
+        dump($photos);
 
         return $this->render('establishment/establishment.html.twig', [
             'id' => $id,
