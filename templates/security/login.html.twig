@@ -6,20 +6,20 @@
 
 <div class="container-fluid">
     <form method="post">
-        {% if error %}
-            <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+        {% if authenticationError %}
+            <div class="alert alert-danger">{{ authenticationError }}</div>
         {% endif %}
 
-        {% if app.user %}
-            <div class="mb-3">
-                Vous êtes connectés en tant que {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
-            </div>
-        {% endif %}
+{#        {% if app.user %}#}
+{#            <div class="mb-3">#}
+{#                Vous êtes déjà connecté en tant que {{ app.user.username }}, <a href="{{ path('app_logout') }}">Déconnexion</a>#}
+{#            </div>#}
+{#        {% endif %}#}
 
 
         <h1 class="h3 mt-4 mb-3 font-weight-normal text-center" class="form-label">Connexion</h1>
         <label for="inputEmail">Email</label>
-        <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
+        <input type="email" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
         <label for="inputPassword" class="form-label mt-4">Mot de passe</label>
         <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
 
