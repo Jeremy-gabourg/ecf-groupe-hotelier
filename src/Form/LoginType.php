@@ -5,6 +5,7 @@ namespace App\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\NotBlank;
@@ -29,13 +30,18 @@ class LoginType extends AbstractType
                 'label'=>'Mot de passe',
                 'attr' => [
                     'class'=>'form-control',
-                    'id'=>'password',
                 ],
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Veuillez rentrer un mot de passe',
                     ]),
                 ],
+            ])
+            ->add('submit', SubmitType::class, [
+                'label'=>'Se connecter',
+                'attr'=>[
+                    'class'=>'btn btn-primary mt-3',
+                ]
             ])
         ;
     }

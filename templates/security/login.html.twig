@@ -8,14 +8,14 @@
 <div class="container-fluid">
 {#    <form method="post">#}
         {{ form_start(loginForm) }}
-        {% if authenticationError %}
-            <div class="alert alert-danger">{{ authenticationError }}</div>
-        {% endif %}
+{#        {% if authenticationError %}#}
+{#            <div class="alert alert-danger">{{ authenticationError }}</div>#}
+{#        {% endif %}#}
     <div>
         {{ form_row(loginForm.email) }}
     </div>
     <div>
-        {{ form_row(loginForm.password) }}
+        {{ form_row(loginForm.Password) }}
     </div>
 {#        {% if app.user %}#}
 {#            <div class="mb-3">#}
@@ -27,9 +27,9 @@
 {#        <label for="inputPassword" class="form-label mt-4">Mot de passe</label>#}
 {#        <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>#}
 
-        <input type="hidden" name="_csrf_token"
-               value="{{ csrf_token('authenticate') }}"
-        >
+{#        <input type="hidden" name="_csrf_token"#}
+{#               value="{{ csrf_token('authenticate') }}"#}
+{#        >#}
 
         {#
         Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
@@ -43,11 +43,14 @@
         #}
 
         <div class="d-grid mx-auto col col-md-6 col-lg-4 mt-5">
-            <button class="btn btn-lg btn-primary mt-3" type="submit">
-                Se connecter
-            </button>
+{#            <button class="btn btn-lg btn-primary mt-3" type="submit">#}
+{#                Se connecter#}
+{#            </button>#}
+            {{ form_row(loginForm.submit) }}
         </div>
+
         {{ form_end(loginForm) }}
+
         <div class="text-center pt-3">
             <a href="/register" >
                 Vous n'avez pas encore de compte? Cliquez sur ce lien pour en créer un!

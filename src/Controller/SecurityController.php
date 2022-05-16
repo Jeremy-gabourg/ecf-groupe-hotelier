@@ -16,43 +16,49 @@ use Symfony\Component\HttpFoundation\Request;
 class SecurityController extends AbstractController
 {
     #[Route(path: '/login', name: 'app_login')]
-    public function login(Request $request, UserPasswordHasherInterface $userPasswordHasher, User $userEntity, ManagerRegistry $doctrine): Response
+    public function login(Request $request, UserPasswordHasherInterface $userPasswordHasher, ManagerRegistry $doctrine): Response
     {
         $form = $this->createForm(LoginType::class);
         $form->handleRequest($request);
-
-        session_start();
+        dump($form);
         if ($form->isSubmitted() && $form->isValid()) {
+            dump('bonjour');
             $data = $form->getData();
 
-            $plainPassword = $data['password'];
+            $user = new User();
+            $plainPassword = $data['Password'];
             $hashedPassword = $userPasswordHasher->hashPassword(
-                $userEntity,
+                $user,
                 $plainPassword
             );
 
             $userRepository = $doctrine->getRepository(User::class);
             $roleRepository = $doctrine->getRepository(Role::class);
 
-            $user = $userRepository->findOneBy([
+            $currentUser = $userRepository->findOneBy([
                 'email' => $data['email'],
-                'password' => $hashedPassword,
+//                'password' => $hashedPassword,
             ]);
 
-            if ($user !== null) {
-                $role = $roleRepository->find($user->getRoleId());
+            if (!$currentUser) {
+                throw $this->createNotFoundException('Aucun utilisateur avec cette association email / mot de passe');
+            } else {
 
-                $_SESSION['userId'] = $user->getId();
-                $_SESSION['userName'] = $user->getUserName();
-                $_SESSION['email'] = $user->getEmail();
+                $roleId = $user->getRoleId();
+                $role = $roleRepository->find($roleId);
+
+                $_SESSION['userId'] = $currentUser->getId();
+                $_SESSION['userName'] = $currentUser->getUserName();
+                $_SESSION['email'] = $currentUser->getEmail();
                 $_SESSION['userRole'] = $role->getRoleName();
                 $_SESSION['connected'] = 'yes';
+
+                dump($_SESSION);
 
                 return $this->redirectToRoute('home_page');
             }
         }
-            return $this->render('security/login.html.twig', [
-                'authenticationError'=>'Mauvais mot de passe ou mauvais email. Veuillez réessayer svp.',
+            return $this->renderForm('security/login.html.twig', [
                 'loginForm'=>$form,
             ]);
     }
